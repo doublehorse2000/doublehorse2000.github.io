@@ -4,6 +4,8 @@ site_authro: StarWaper
 site_description: StarWaper's Personal Website
 
 nav:
+  - 学习笔记:
+    - STUDY/KalmanFilter.md
   - 网站:
     - TEST/test.md
 
