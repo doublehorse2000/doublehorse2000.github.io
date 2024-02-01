@@ -5,6 +5,7 @@ site_description: StarWaper's Personal Website
 
 nav:
   - 学习笔记:
+    - STUDY/AdvancedControl.md
     - STUDY/KalmanFilter.md
   - 网站:
     - TEST/test.md
@@ -30,8 +31,8 @@ theme:
         name: Switch to system preference
     # ------------------------------------
   features:
-    - navigation.instant
-    - navigation.instant.progress # 设置进度指示器
+    # - navigation.instant
+    # - navigation.instant.progress # 设置进度指示器
     - navigation.tabs
     - navigation.tabs.sticky # 设置顶部标签栏
     - navigation.top # 添加返回顶部按钮
