@@ -10,6 +10,7 @@ Optimal Recursire Data Processing Algorithm
   * 测量传感器存在误差
 
 估真实数据 -> 取平均值
+
 $$
 \begin{array}{ll}
 \hat{x}_k &= \frac{1}{k}(z_1 + z_2 + \cdots + z_k)\\
@@ -17,12 +18,15 @@ $$
 &=\frac{k-1}{k}\hat{x}_{k-1} + \frac{1}{k}z_k\\
 \end{array}
 $$
+
 因此有
+
 $$
 \hat{x}_k = \hat{x}_{k-1} + \frac{1}{k}(z_k - \hat{x}_{k-1})\\
 \hat{x}_k = \hat{x}_{k-1} + K_k(z_k - \hat{x}_{k-1})\\
 \mathrm{当前的估计值} = \mathrm{上一次的估计值} + \mathrm{系数} \times (\mathrm{当前测量值} - \mathrm{上一次的估计值})
 $$
+
 $K_k$：Kalman Gain 卡尔曼增益/因数
 
 * 估计误差$e_{EST}$：估计值和真实值的差距
@@ -60,17 +64,22 @@ $$
 ## 数据融合
 
 有两个秤，其测量的结果分别为$z_1,z_2$，标准差分别为$\sigma_1, \sigma_2$
+
 $$
 \begin{array}{ll}
 z_1 = 30g & \sigma_1 = 2g\\
 z_2 = 32g & \sigma_2 = 4g\\
 \end{array}
 $$
+
 估计真实值$\hat{z}$
+
 $$
 \hat{z} = z_1 + K(z_1 - z_2)\;\;\;\;k\in[0,1]
 $$
+
 求K使得$\sigma_{\hat{z}}$最小->方差$Var(\hat{z})$最小
+
 $$
 \begin{array}{ll}
 \sigma_{\hat{z}}^2 &= Var(z_1 + k(z_2 - z_1))\\ 
@@ -102,6 +111,7 @@ $$
 ## 卡尔曼增益/因数详细推导
 
 状态空间方程
+
 $$
 x_k = Ax_{k-1} + Bu_{k-1} + w_{k-1}\\
 z_k = Hx_k + v_k
@@ -122,7 +132,6 @@ $$
 > w_2
 > \end{array}{}
 > \right]
-> 
 > \left[
 > \begin{array}{}
 > w_1 & w_2
@@ -144,6 +153,7 @@ $$
 > * 其中$v_k$为测量噪声，服从$p(v)\sim (0,R)$的正态分布
 
 由于不知道过程噪声，因此根据上一次的实际量和上一次的控制量，可以写出状态空间方程
+
 $$
 \hat{x}_{\bar{k}} = Ax_{k-1} + Bu_{k-1}\\
 z_k = Hx_k \rightarrow \hat{x}_{MEA_k} = H^- z_k\\
@@ -153,18 +163,23 @@ $$
 > 其中$\hat{x}_{\bar{k}}$代表了状态量的先验估计，因此后面不带过程噪声
 
 因此可以通过测量的量和先验估计量来估计一个统计概率上最优的解
+
 $$
 \hat{x}_k = \hat{x}_{\bar{k}} + G(H^- z_k - \hat{x}_{\bar{k}})\;\;\;G\in[0,1]\\
 $$
+
 令$G = K_k H$
+
 $$
 \hat{x}_k = \hat{x}_{\bar{k}} + K_k(z_k - H\hat{x}_{\bar{k}})\;\;K_k \in[0, H^-]
 $$
+
 寻找$K_k$使得$\hat{x}_k$最接近$x_k$
 
 令$e_k = x_k - \hat{x}_k$，求解使$P=E[e e^T]$最小的$K_k$的数值
 
 首先化简一下$e_k$
+
 $$
 \begin{array}{ll}
 x_k - \hat{x}_k &= x_k - \hat{x}_k

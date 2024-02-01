@@ -1,6 +1,7 @@
 site_name: StarWaper
-site_authro: StarWaper
+site_author: StarWaper
 site_description: StarWaper's Personal Website
+
 
 nav:
   - 学习笔记:
@@ -9,16 +10,66 @@ nav:
     - TEST/test.md
 
 theme:
-  name: material
-  language: zh
+  name: material # 设置为material主题
+  language: zh # 设置语言为中文
+  palette:
+    # 白天主题与深色主题自动切换
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default 
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+    # ------------------------------------
+  features:
+    - navigation.instant
+    - navigation.instant.progress # 设置进度指示器
+    - navigation.tabs
+    - navigation.tabs.sticky # 设置顶部标签栏
+    - navigation.top # 添加返回顶部按钮
+    - search.suggest # 添加搜索建议
+    - search.highlight # 添加搜索突出显示
+    - header.autohide # 设置标题自动隐藏
+    - content.code.copy # 设置代码可复制
+
+copyright: Copyright &copy; 2016 - 2020 StarWaper&Doublehorse # 声明
+
+plugins:
+  - search
+
 
 markdown_extensions:
+  # 启动数学公式
   - pymdownx.arithmatex:
       generic: true
+  # --------------------
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - tables
   - pymdownx.betterem
   - pymdownx.caret
   - pymdownx.mark
   - pymdownx.tilde
+  - pymdownx.highlight:
+      use_pygments: true
+      auto_title: true
+  - pymdownx.superfences
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+
 
 extra_javascript:
   - javascripts/mathjax.js
