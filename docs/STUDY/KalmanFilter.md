@@ -82,7 +82,7 @@ $$
 
 $$
 \begin{array}{ll}
-\sigma_{\hat{z}}^2 &= Var(z_1 + k(z_2 - z_1))\\ 
+\sigma_{\hat{z}}^2 &= Var(z_1 + k(z_2 - z_1))\\  
 &= Var((1-k)z_1 + kz_2)\\
 &= Var((1-k)z_1) + Var(kz_2)\\
 &= (1-k)^2 Var(z_1) + k^2 Var(z_2)\\
@@ -98,8 +98,7 @@ $$
 ## 协方差矩阵
 
 $$
-P = 
-\begin{bmatrix}{}
+P = \begin{bmatrix}{}
 \sigma_x^2 & \sigma_x \sigma_y & \sigma_x \sigma_z\\
 \sigma_y \sigma_x & \sigma_y^2 & \sigma_y \sigma_z\\
 \sigma_z \sigma_x & \sigma_z \sigma_y & \sigma_z^2
@@ -152,7 +151,7 @@ $$
 > * 其中$w_{k-1}$为过程噪声，服从$p(w)\sim(0,Q)$的正态分布，$0$代表了正态分布的期望为$0$，$Q$为协方差矩阵
 >
 > $$
-> Q = \left[
+> Q = E\left[
 > \begin{array}{}
 > w & w^T
 > \end{array}{}
@@ -169,8 +168,7 @@ $$
 > w_1 & w_2
 > \end{array}{}
 > \right]
-> \right] = 
-> \left[
+> \right] = \left[
 > \begin{array}{}
 > E(w_1^2)=\sigma_{w_1}^2 & E(w_1w_2)=\sigma_{w_1}\sigma_{w_2}\\
 > E(w_2w_1)=\sigma_{w_2}\sigma_{w_1} & E(w_2^2) = \sigma_{w_2}^2
@@ -190,7 +188,6 @@ $$
 \hat{x}_{\bar{k}} = Ax_{k-1} + Bu_{k-1}\\
 z_k = Hx_k \rightarrow \hat{x}_{MEA_k} = H^- z_k\\
 $$
-
 
 > 其中$\hat{x}_{\bar{k}}$代表了状态量的先验估计，因此后面不带过程噪声
 
@@ -214,27 +211,48 @@ $$
 
 $$
 \begin{array}{ll}
-x_k - \hat{x}_k &= x_k - \hat{x}_k
+x_k - \hat{x}_k &= x_k - (\hat{x}_{\bar{k}} + K_k(z_k - H\hat{x}_{\bar{k}})) \\
+&= x_k - \hat{x}_{\bar{k}} - K_kz_k + K_kH\hat{x}_{\bar{x}}\\
+& = x_k - \hat{x}_{\bar{k}} - K_kHx_k - K_kv_k + K_kH\hat{x}_{\bar{x}}\\
+&= (x_k - \hat{x}_{\bar{k}}) - K_kH(x_k - \hat{x}_{\bar{k}}) - K_kv_k\\
+&= (I - K_kH)(x_k - \hat{x}_{\bar{k}})- K_kv_k\\
+&= (I - K_kH)e_{\bar{k}} - K_kv_k\\
 \end{array}
 $$
 
+$$
+\begin{array}{ll}
+  P&=E[e e^T]\\
+  &= E[(x_k - \hat{x}_{\bar{k}})(x_k - \hat{x}_{\bar{k}})^T]\\
+  &= E[((I - K_kH)e_{\bar{k}}- K_kv_k)((I - K_kH)e_{\bar{k}}- K_kv_k)^T]\\
+  &= E[((I - K_kH)e_{\bar{k}}- K_kv_k)(e_{\bar{k}}^T(I - K_kH)^T- v_k^TK_k^T)]\\
+\end{array}
+$$
 
+可以将上述的等式拆成四个部分，分别为
+$$
+\begin{array}{ll}
+  E[(I - K_kH)e_{\bar{k}}e_{\bar{k}}^T(I-K_kH)^T]\\\\
+  E[(I - K_kH)e_{\bar{k}}v_k^TK_k^T]\\\\
+  E[K_kv_ke_{\bar{k}}^T(I - K_kH)^T]\\\\
+  E[K_kv_kv_k^TK_k^T]\\\\
+\end{array}
+$$
 
+针对第二项和第三项可以有
 
+$$
+\begin{array}{ll}
+  E[(I - K_kH)e_{\bar{k}}v_k^TK_k^T] &= (I - K_kH)E[e_{\bar{k}}v_k^TK_k^T]\\
+  &= (I - K_kH)E[e_{\bar{k}}]\cdot E[v_k^T] K_k^T\\
+  &= 0\\
+  E[K_kv_ke_{\bar{k}}^T(I - K_kH)^T] &= K_kE[v_k]\cdot E[e_{\bar{k}}^T](I - K_kH)^T\\
+  &= 0\\
+\end{array}
+$$
 
+$$
+\begin{array}{ll}
 
-
-
-
-
-
-
-  
-
-
-
-
-
-
-
-​     
+\end{array}
+$$
