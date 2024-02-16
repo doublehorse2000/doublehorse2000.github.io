@@ -22,9 +22,11 @@ $$
 因此有
 
 $$
-\hat{x}_k = \hat{x}_{k-1} + \frac{1}{k}(z_k - \hat{x}_{k-1})\\
+\begin{matrix}
+  \hat{x}_k = \hat{x}_{k-1} + \frac{1}{k}(z_k - \hat{x}_{k-1})\\
 \hat{x}_k = \hat{x}_{k-1} + K_k(z_k - \hat{x}_{k-1})\\
 \mathrm{当前的估计值} = \mathrm{上一次的估计值} + \mathrm{系数} \times (\mathrm{当前测量值} - \mathrm{上一次的估计值})
+\end{matrix}
 $$
 
 $K_k$：Kalman Gain 卡尔曼增益/因数
@@ -230,6 +232,7 @@ $$
 $$
 
 可以将上述的等式拆成四个部分，分别为
+
 $$
 \begin{array}{ll}
   E[(I - K_kH)e_{\bar{k}}e_{\bar{k}}^T(I-K_kH)^T]\\\\
@@ -248,11 +251,5 @@ $$
   &= 0\\
   E[K_kv_ke_{\bar{k}}^T(I - K_kH)^T] &= K_kE[v_k]\cdot E[e_{\bar{k}}^T](I - K_kH)^T\\
   &= 0\\
-\end{array}
-$$
-
-$$
-\begin{array}{ll}
-
 \end{array}
 $$
