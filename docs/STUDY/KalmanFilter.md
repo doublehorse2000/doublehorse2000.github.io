@@ -253,3 +253,63 @@ $$
   &= 0\\
 \end{array}
 $$
+
+针对第一项有
+
+$$
+\begin{array}{ll}
+  E[(I - K_kH)e_{\bar{k}}e_{\bar{k}}^T(I-K_kH)^T] &= (I-K_kH)E[e_{\bar{k}}e_{\bar{k}}^T](I-K_kH)^T \\
+  &= (I-K_kH)P_{\bar{k}}(I-K_kH)^T\\
+  &= (P_{\bar{k}} - K_kHP_{\bar{k}})(I - H^TK_k^T)\\
+  &= P_{\bar{k}} - K_kHP_{\bar{k}} - P_{\bar{k}}H^TK_k^T + K_kHP_{\bar{k}}H^TK_k^T
+\end{array}
+$$
+
+针对第四项有
+
+$$
+\begin{array}{ll}
+  E[K_kv_kv_k^TK_k^T] &= K_kRK_k^T
+\end{array}
+$$
+
+综上有
+
+$$
+\begin{array}{ll}
+  P = P_{\bar{k}} - K_kHP_{\bar{k}} - P_{\bar{k}}H^TK_k^T + K_kHP_{\bar{k}}H^TK_k^T + K_k R K_k^T
+\end{array}
+$$
+
+需要寻找$tr(P)$最小
+
+$$
+tr(P) = tr(P_{\bar{k}}) - 2tr(K_kHP_{\bar{k}}) + tr(K_kHP_{\bar{k}}H^TK_k^T) + tr(K_k R K_k^T)
+$$
+
+$$
+\begin{array}{ll}
+  \frac{\mathrm{d}tr(P)}{\mathrm{d}K_k} &= 0 - 2 (HP_{\bar{k}})^T + 2K_kHP_{\bar{k}}H^T + 2K_kR\\
+  & = 0
+\end{array}
+$$
+
+$$
+  -P_{\bar{k}}H+K_k(HP_{\bar{k}}H^T+R) = 0
+$$
+
+$$
+K_k = \frac{P_{\bar{k}}H^T}{HP_{\bar{k}}H^T+R}
+$$
+
+> $$
+> \frac{\mathrm{d}tr(AB)}{\mathrm{d}A} = B^T
+> $$
+>
+> $$
+> \frac{\mathrm{d}tr(ABA^T)}{\mathrm{d}A} = A(B + B^T)
+> $$
+>
+
+* 当$R \rightarrow \infty$时，说明测量噪声很大，$K_k \rightarrow 0, \hat{x}_k \rightarrow \hat{x}_{\bar{k}}$
+* 当$R \rightarrow 0$时，说明测量噪声很小，$K_k \rightarrow H^-,\hat{x}_k \rightarrow H^-z_k$
