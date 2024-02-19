@@ -5,9 +5,14 @@ site_description: StarWaper's Personal Website
 
 nav:
   - 学习笔记:
-    - STUDY/AdvancedControl.md
-    - STUDY/KalmanFilter.md
-  - 网站:
+    - 控制:
+      - STUDY/AdvancedControl.md
+      - STUDY/KalmanFilter.md
+  - 音乐:
+    - VOCALOID:
+      - MUSIC/Voice.md
+      - MUSIC/Synthesizer_V.md
+  - 测试网站:
     - TEST/test.md
 
 theme:
