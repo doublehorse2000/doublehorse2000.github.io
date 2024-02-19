@@ -276,9 +276,7 @@ $$
 综上有
 
 $$
-\begin{array}{ll}
-  P = P_{\bar{k}} - K_kHP_{\bar{k}} - P_{\bar{k}}H^TK_k^T + K_kHP_{\bar{k}}H^TK_k^T + K_k R K_k^T
-\end{array}
+P = P_{\bar{k}} - K_kHP_{\bar{k}} - P_{\bar{k}}H^TK_k^T + K_kHP_{\bar{k}}H^TK_k^T + K_k R K_k^T
 $$
 
 需要寻找$tr(P)$最小
@@ -313,3 +311,48 @@ $$
 
 * 当$R \rightarrow \infty$时，说明测量噪声很大，$K_k \rightarrow 0, \hat{x}_k \rightarrow \hat{x}_{\bar{k}}$
 * 当$R \rightarrow 0$时，说明测量噪声很小，$K_k \rightarrow H^-,\hat{x}_k \rightarrow H^-z_k$
+
+## 误差协方差矩阵
+
+$$
+x_k = Ax_{k-1} + Bi_{k-1} + w_{k-1}
+$$
+
+$$
+z_k = Hx_k + v_k
+$$
+
+* 先验估计$\hat{x}_{\bar{k}} = A \hat{x}_{k-1} + Bu_{k-1}$
+* 后验估计$\hat{x}_k = \hat{x}_{\bar{k}} + K_k(z_k - H\hat{x}_{\bar{k}})$
+* 卡尔曼增益$K_k = (P^-_k H^T) / (HP^-_kH^T+R)$
+* 其中仅有$P^-_k$是未知的，因此需要求解
+
+$$
+P_k^- = E[e_k^- e_k^{-T}]
+$$
+
+$$
+\begin{array}{ll}
+  e_k^- &= x_k - \hat{x}_{\bar{k}}\\
+  &= Ax_{k-1} + Bu_{k-1} + w_{k-1} - A \hat{x}_{k-1} - Bu_{k-1}\\
+  &= A(x_{k-1} - \hat{x}_{k-1}) + w_{k-1}\\
+  &= Ae_{k-1} + w_{k-1}
+\end{array}
+$$
+
+$$
+\begin{array}{ll}
+  P_k^- &= E[(Ae_{k-1} + w_{k-1})(e_{k-1}^TA + w_{k-1}^T)]\\
+  &= E[Ae_{k-1}e_{k-1}^TA^T + Ae_{k-1}w_{k-1}^T + w_{k-1}e_{k-1}^TA+w_{k-1}w_{k-1}^T]\\
+  &= A E[e_{k-1}e_{k-1}^T]A^T + E[w_{k-1}w_{k-1}^T]\\
+  &= A P_{k-1}^-A^T+Q
+\end{array}
+$$
+
+* 预测
+  * 先验：$\hat{x}_{\bar{k}} = A \hat{x}_{k-1}+Bu_{k-1}$
+  * 先验误差协方差:$P_k^- = A P_{k-1}A^T + Q$
+* 校正
+  * 卡尔曼增益：$K_k = (P^-_k H^T) / (HP^-_kH^T+R)$
+  * 后验估计：$\hat{x}_k = \hat{x}_{\bar{k}} + K_k(z_k - H\hat{x}_{\bar{k}})$
+  * 更新协方差矩阵:$P_k = (I - K_kH)P_k^-$
