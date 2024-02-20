@@ -9,6 +9,9 @@ nav:
       - STUDY/AdvancedControl.md
       - STUDY/KalmanFilter.md
   - 音乐:
+    - 声音学:
+      - MUSIC/Musical_Acoustics.md
+      - MUSIC/Musical_Instrument.md
     - VOCALOID:
       - MUSIC/Voice.md
       - MUSIC/Synthesizer_V.md
