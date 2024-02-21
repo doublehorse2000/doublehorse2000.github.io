@@ -12,6 +12,8 @@ nav:
     - 声音学:
       - MUSIC/Musical_Acoustics.md
       - MUSIC/Musical_Instrument.md
+    - 编曲:
+      - MUSIC/Music_Theory.md
     - VOCALOID:
       - MUSIC/Voice.md
       - MUSIC/Synthesizer_V.md
