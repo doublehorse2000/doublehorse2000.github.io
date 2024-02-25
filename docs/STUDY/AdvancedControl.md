@@ -262,12 +262,12 @@ $$
     & \lambda_2 & & \newline
     & & \ddots & \newline
     & & & & \lambda_n \newline
-\end{bmatrix}$，则$e^{At} = \begin{bmatrix}
+    \end{bmatrix}$，则$e^{At} = \begin{bmatrix}
     e^{\lambda_1t} & & & \newline
     & e^{\lambda_2t} & & \newline
     & & \ddots & \newline
     & & & & e^{\lambda_nt} \newline
-\end{bmatrix}$
+    \end{bmatrix}$
 * 若$A = P\Lambda P^{-1}$，则$e^{At}=Pe^{\Lambda t}P^{-1}$
 
 求解状态空间方程的解
