@@ -1,6 +1,7 @@
 site_name: StarWaper
 site_author: StarWaper
 site_description: StarWaper's Personal Website
+site_url: https://www.starwaper.com
 
 
 nav:
@@ -8,6 +9,8 @@ nav:
     - 控制:
       - STUDY/AdvancedControl.md
       - STUDY/KalmanFilter.md
+    - 车辆:
+      - STUDY/VechichDynamics.md
   - 音乐:
     - 声音学:
       - MUSIC/Musical_Acoustics.md

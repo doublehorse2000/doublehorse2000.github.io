@@ -262,12 +262,12 @@ $$
     & \lambda_2 & & \newline
     & & \ddots & \newline
     & & & & \lambda_n \newline
-\end{bmatrix}$，则$e^{At} = \begin{bmatrix}
+    \end{bmatrix}$，则$e^{At} = \begin{bmatrix}
     e^{\lambda_1t} & & & \newline
     & e^{\lambda_2t} & & \newline
     & & \ddots & \newline
     & & & & e^{\lambda_nt} \newline
-\end{bmatrix}$
+    \end{bmatrix}$
 * 若$A = P\Lambda P^{-1}$，则$e^{At}=Pe^{\Lambda t}P^{-1}$
 
 求解状态空间方程的解
@@ -301,3 +301,11 @@ $$
 ## 二、相图相轨迹
 
 相图和相轨迹`Phase Portrait`是一种通过直观的图形分析微分方程，特别是微分方程的方法。
+$$
+\begin{cases}
+\dot{x}_1 = x_2 - 0.5 x_1 \\
+\dot{x}_2 = \sin x_1
+\end{cases}
+$$
+
+
