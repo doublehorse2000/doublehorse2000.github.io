@@ -301,29 +301,18 @@ $$
 ## 二、相图相轨迹
 
 相图和相轨迹`Phase Portrait`是一种通过直观的图形分析微分方程，特别是微分方程的方法。
-<<<<<<< Updated upstream
-$$
-\begin{cases}
-\dot{x}_1 = x_2 - 0.5 x_1 \\
-=======
 
 例如此式子的相图相轨迹为
 $$
 \begin{cases}
 \dot{x}_1 = x_2 - 0.5 x_1\\
->>>>>>> Stashed changes
 \dot{x}_2 = \sin x_1
 \end{cases}
 $$
 
-
-<<<<<<< Updated upstream
-=======
 <img src="./image/phaseportrait.png" alt="phaseportrait" style="zoom:48%;" />
 
 分析一维情况利用下面的例子来举例子
-
-
 
 <img src="./image/1-DPhasePortrait.png" style="zoom:24%;" />
 
@@ -331,10 +320,10 @@ $$
 * 当$x< -1$的时候，会逐渐靠近$x\rightarrow-1$
 * 当$-1 < x < 1$的时候，会逐渐靠近$x\rightarrow -1$
 * 当$x > 1$的时候，会逐渐靠近$x\rightarrow + \infty$
-
 * 所以$x = -1$是稳定点，$x = 1$是不稳定点
 
 分析二维的情况
+
 $$
 \dot{x} = A x + Bu
 $$
@@ -353,7 +342,9 @@ x_1 \\
 x_2\\
 \end{bmatrix}
 $$
+
 则有
+
 $$
 \begin{cases}
 \dot{x}_1 = ax_1\\
@@ -362,6 +353,7 @@ $$
 x_{10} = 0\\
 x_{20} = 0\\
 \end{cases}
+
 $$
 
 * case1:$a=d>0$​
@@ -380,6 +372,7 @@ $$
 <img src="./image/2-DphaseportraitCase3.png" alt="2-DphaseportraitCase3" style="zoom:48%;" />
 
 进行一般形式的分析
+
 $$
 \dot{x} = Ax
 $$
@@ -453,6 +446,7 @@ u_0
 $$
 
 其中
+
 $$
 \begin{matrix}
 A \in R^{n\times n}\\
@@ -460,12 +454,9 @@ B \in R^{n\times r}\\
 Co \in R^{n\times nr}\\
 \end{matrix}
 $$
+
 若$u$有解，则
+
 $$
 Rank(Co) = n
 $$
-
-
-
-
->>>>>>> Stashed changes
