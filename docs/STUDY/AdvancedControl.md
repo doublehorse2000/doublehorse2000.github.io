@@ -301,11 +301,171 @@ $$
 ## 二、相图相轨迹
 
 相图和相轨迹`Phase Portrait`是一种通过直观的图形分析微分方程，特别是微分方程的方法。
+<<<<<<< Updated upstream
 $$
 \begin{cases}
 \dot{x}_1 = x_2 - 0.5 x_1 \\
+=======
+
+例如此式子的相图相轨迹为
+$$
+\begin{cases}
+\dot{x}_1 = x_2 - 0.5 x_1\\
+>>>>>>> Stashed changes
 \dot{x}_2 = \sin x_1
 \end{cases}
 $$
 
 
+<<<<<<< Updated upstream
+=======
+<img src="./image/phaseportrait.png" alt="phaseportrait" style="zoom:48%;" />
+
+分析一维情况利用下面的例子来举例子
+
+
+
+<img src="./image/1-DPhasePortrait.png" style="zoom:24%;" />
+
+* 可以看到当$x = \pm1$的时候，$\dot{x} = 0$
+* 当$x< -1$的时候，会逐渐靠近$x\rightarrow-1$
+* 当$-1 < x < 1$的时候，会逐渐靠近$x\rightarrow -1$
+* 当$x > 1$的时候，会逐渐靠近$x\rightarrow + \infty$
+
+* 所以$x = -1$是稳定点，$x = 1$是不稳定点
+
+分析二维的情况
+$$
+\dot{x} = A x + Bu
+$$
+
+令$u = 0$
+
+$$
+\frac{\mathrm{d}}{\mathrm{d}t} \begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix} = \begin{bmatrix}
+a & b\\
+c & d\\
+\end{bmatrix} \begin{bmatrix}
+x_1 \\
+x_2\\
+\end{bmatrix}
+$$
+则有
+$$
+\begin{cases}
+\dot{x}_1 = ax_1\\
+\dot{x}_2 = dx_2\\
+\end{cases} \begin{cases}
+x_{10} = 0\\
+x_{20} = 0\\
+\end{cases}
+$$
+
+* case1:$a=d>0$​
+* $(0,0)$点叫做`source`,是`unstable`不稳定点
+
+<img src="./image/2-DphaseportraitCase1.png" style="zoom:48%;" />
+
+* case2:$a > 0, d < 0$​
+* $(0,0)$点叫做`saddle`
+
+<img src="./image/2-DphaseportraitCase2.png" style="zoom:48%;" />
+
+* case3：$a,d < 0$​
+* $(0,0)$点叫做`sink`，是`stable`稳定点
+
+<img src="./image/2-DphaseportraitCase3.png" alt="2-DphaseportraitCase3" style="zoom:48%;" />
+
+进行一般形式的分析
+$$
+\dot{x} = Ax
+$$
+
+$$
+\begin{matrix}
+x = py\\
+\dot{y} = \Lambda y
+\end{matrix}
+$$
+
+* $x$的特征值决定了他的 
+
+### 2.1总结
+
+$$
+\begin{cases}
+\lambda_1 = a_1 + b_1i\\
+\lambda_2 = a_2 + b_2i
+\end{cases}
+$$
+
+* 当$a_1,a_2<0,b_1 = b_2 = 0$​，是`stable`
+
+<img src="./image/2_1_1.png" style="zoom:50%;" />
+
+* 当$a_1 > 0,a_2 < 0, b_1 = b_2 = 0$​，是`saddle`
+
+<img src="./image/2_1_2.png" style="zoom:50%;" />
+
+* 当$a_1,a_2>0,b_1 = b_2 = 0$​，是`unstable`
+
+<img src="./image/2_1_3.png" style="zoom:50%;" />
+
+* 当$a_1 = a_2 = 0$​，是`center`
+
+<img src="./image/2_1_4.png" style="zoom:50%;" />
+
+* 当$a_1,a_2>0$​,是`unstable`
+
+<img src="./image/2_1_5.png" style="zoom:50%;" />
+
+* 当$a_1,a_2<0$​，是`stable`
+
+<img src="./image/2_1_6.png" style="zoom:50%;" />
+
+## 系统的可控性
+
+* 有一个离散系统
+
+$$
+\begin{array}{ll}
+x_{k+1} &= Ax_k+Bu_k\\
+x_1 &= Ax_0+Bu_0 = Bu_0\\
+x_2 &= Ax_1 + Bu_1 = ABu_0+Bu_1\\
+x_3 &=Ax_2+Bu_2 = A^2Bu_0+ABu_1+Bu_2\\
+\vdots\\
+x_n &= Ax_{n-1}+Bu_{n-1} = A^{n-1}Bu_0+\cdots+ABu_{n-2}+Bu_{n-1}
+\end{array}
+$$
+
+$$
+x_n = \begin{bmatrix}
+B & AB & \cdots & A^{n-1}B
+\end{bmatrix} \begin{bmatrix}
+u_{n-1}\\
+u_{n-2}\\
+\vdots\\
+u_0
+\end{bmatrix} = Co \times u
+$$
+
+其中
+$$
+\begin{matrix}
+A \in R^{n\times n}\\
+B \in R^{n\times r}\\
+Co \in R^{n\times nr}\\
+\end{matrix}
+$$
+若$u$有解，则
+$$
+Rank(Co) = n
+$$
+
+
+
+
+>>>>>>> Stashed changes
