@@ -5,6 +5,7 @@
 ### （一）附着力、计算牵引力和牵引力
 
 附着力：由作用在驱动轮上的转矩引起的，地面对车轮产生的能用于驱动车轮前进的**最大切向**力。
+
 $$
 \begin{array}{ll}
 \mathrm{附着力} &= \mathrm{车轮的附着重} \times \mathrm{附着系数}\\
@@ -29,6 +30,7 @@ $$
 * 当$F_j > F_{\varphi}$时，$F < F_j\;\;\;\;F=\mathrm{附着重}\times \mathrm{附着率}$​
 
 车辆的加速度为
+
 $$
 a \leq \frac{F_{\varphi}}{m}=\frac{G_\varphi \cdot \varphi}{m} = \frac{G + F_{ag}}{m} \cdot \varphi
 $$
@@ -47,7 +49,7 @@ $$
 
 滚动半径$R$：根据车轮转动圈数n与实际车轮中心移动距离s之间的数学关系换算所得半径。
 
-<img src="./image/DynamicVehicle1_2_1.png" alt="image-20240226200733341" style="zoom:50%;" />
+![1-DPhasePortrait](./image/DynamicVehicle1_2_1.png)
 
 $$
 R = \frac{s}{2 \pi n}
@@ -67,22 +69,22 @@ $$
 
 **滑转率**与**滑移率**统称为**滑动率**。
 
-<img src="./image/DynamicVehicle1_3_1" alt="image-20240226201250480" style="zoom: 33%;" />
+![1-DPhasePortrait](./image/DynamicVehicle1_3_1.jpg)
 
 * 驱动情况下，滑动率为1，代表了车辆打滑
 * 制动情况下，滑动率为1，代表了车辆抱死
 
 前轮抱死时，$F_{y1}=0$，$F_{y2}$与$F_j$构成的力矩具有减小转向作用的能力，即使车辆失去转向能力，但汽车处于稳定状态。
 
-<img src="./image/DynamicVehicle1_3_2.jpg" alt="DynamicVehicle1_3_2" style="zoom: 33%;" />
+![1-DPhasePortrait](./image/DynamicVehicle1_3_2.jpg)
 
 后轮抱死时，$F_{y2}=0$，$F_j$与$F_{y1}$构成的力矩具有增大转向作用的能力，容易出现甩尾，汽车将急剧转动，处于不稳定状态。
 
-<img src="./image/DynamicVehicle1_3_3.jpg" alt="DynamicVehicle1_3_3" style="zoom:33%;" />
+![1-DPhasePortrait](./image/DynamicVehicle1_3_3.jpg)
 
 ### （四）轮胎坐标系
 
-<img src="./image/DynamicVehicle1_4_1.png" alt="image-20240226202435592" style="zoom: 33%;" />
+![1-DPhasePortrait](./image/DynamicVehicle1_4_1.png)
 
 车轮平面：垂直于车轮旋转轴的轮胎对称面
 

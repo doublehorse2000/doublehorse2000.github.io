@@ -310,11 +310,11 @@ $$
 \end{cases}
 $$
 
-<img src="./image/phaseportrait.png" alt="phaseportrait" style="zoom:48%;" />
+![phaseportrait](./image/phaseportrait.png)
 
 分析一维情况利用下面的例子来举例子
 
-<img src="./image/1-DPhasePortrait.png" style="zoom:24%;" />
+![1-DPhasePortrait](./image/1-DPhasePortrait.png)
 
 * 可以看到当$x = \pm1$的时候，$\dot{x} = 0$
 * 当$x< -1$的时候，会逐渐靠近$x\rightarrow-1$
@@ -359,17 +359,17 @@ $$
 * case1:$a=d>0$​
 * $(0,0)$点叫做`source`,是`unstable`不稳定点
 
-<img src="./image/2-DphaseportraitCase1.png" style="zoom:48%;" />
+![1-DPhasePortrait](./image/2-DphaseportraitCase1.png)
 
 * case2:$a > 0, d < 0$​
 * $(0,0)$点叫做`saddle`
 
-<img src="./image/2-DphaseportraitCase2.png" style="zoom:48%;" />
+![1-DPhasePortrait](./image/2-DphaseportraitCase2.png)
 
 * case3：$a,d < 0$​
 * $(0,0)$点叫做`sink`，是`stable`稳定点
 
-<img src="./image/2-DphaseportraitCase3.png" alt="2-DphaseportraitCase3" style="zoom:48%;" />
+![1-DPhasePortrait](./image/2-DphaseportraitCase3.png)
 
 进行一般形式的分析
 
@@ -384,7 +384,7 @@ x = py\\
 \end{matrix}
 $$
 
-* $x$的特征值决定了他的 
+* $x$的特征值决定了他的
 
 ### 2.1总结
 
@@ -397,27 +397,27 @@ $$
 
 * 当$a_1,a_2<0,b_1 = b_2 = 0$​，是`stable`
 
-<img src="./image/2_1_1.png" style="zoom:50%;" />
+![1-DPhasePortrait](./image/2_1_1.png)
 
 * 当$a_1 > 0,a_2 < 0, b_1 = b_2 = 0$​，是`saddle`
 
-<img src="./image/2_1_2.png" style="zoom:50%;" />
+![1-DPhasePortrait](./image/2_1_2.png)
 
 * 当$a_1,a_2>0,b_1 = b_2 = 0$​，是`unstable`
 
-<img src="./image/2_1_3.png" style="zoom:50%;" />
+![1-DPhasePortrait](./image/2_1_3.png)
 
 * 当$a_1 = a_2 = 0$​，是`center`
 
-<img src="./image/2_1_4.png" style="zoom:50%;" />
+![1-DPhasePortrait](./image/2_1_4.png)
 
 * 当$a_1,a_2>0$​,是`unstable`
 
-<img src="./image/2_1_5.png" style="zoom:50%;" />
+![1-DPhasePortrait](./image/2_1_5.png)
 
 * 当$a_1,a_2<0$​，是`stable`
 
-<img src="./image/2_1_6.png" style="zoom:50%;" />
+![1-DPhasePortrait](./image/2_1_6.png)
 
 ## 系统的可控性
 
