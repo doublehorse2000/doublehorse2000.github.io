@@ -419,7 +419,7 @@ $$
 
 ![1-DPhasePortrait](./image/2_1_6.png)
 
-## 系统的可控性
+## 三 系统的可控性
 
 * 有一个离散系统
 
@@ -459,4 +459,16 @@ $$
 
 $$
 Rank(Co) = n
+$$
+
+## 四 系统的稳定性
+
+### 4.1 稳定性的定义
+
+李雅普诺夫意义下的稳定性（Stability in the Sense of Lyapunov）
+
+* 如果平衡点$z_f = 0$满足
+
+$$
+\forall t_0, \forall \varepsilon >0,\exists \delta (t_0, \varepsilon):\parallel z(t_0) \parallel < \delta(t_0, \varepsilon) \rightarrow \forall t \geq t_0, \parallel z(t) < \varepsilon
 $$
