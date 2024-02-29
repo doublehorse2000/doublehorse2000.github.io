@@ -150,3 +150,49 @@ $k_y$ -侧偏刚度
 * 胎面存在x和y方向的变形,接地印迹各位置的纵向与侧向胎面变形刚度相同
 * 沿x方向，接地印迹的最前与最后端到y轴的距离相等
 * 在接地印迹内各点的运动方向一致
+
+![alt text](./image/TireModel_1.jpg)
+
+假设胎面上的一个点，从$A$点开始与地面接触，经过$t$时间后，运动到$P$点，则$P$位置的x方向为
+
+$$
+x'=vt \cos \alpha
+$$
+
+假设车轮作纯滚动，则该点从$A$处开始，经过$t$时间后运动到$H$位置，定义$H$位置的$x$方向坐标为$x$
+
+在$P$点胎面沿$x$方向的变形量为$\Delta x=x'-x = vt\cos \alpha - x$
+
+在$P$点胎面沿$y$方向的变形量为$\Delta y=vt\sin \alpha$
+
+在制动工况下
+
+* 定义变量-制动滑移率$s_b$(brake)
+
+$$
+s_b = \frac{\Delta x}{x'} = \frac{\Delta x}{x + \Delta x} \Rightarrow \Delta x = \frac{s_b}{1-s_b}x
+$$
+
+$$
+\begin{array}{ll}
+    \Delta y &= vt\sin \alpha\\
+    &= vt \cos \alpha \cdot \tan \alpha\\
+    &= x' \cdot \tan \alpha\\
+    &= \Delta x / s_b \cdot \tan \alpha\\
+    &= 1/s_b \cdot s_b / (1 - s_b) x \cdot \tan \alpha\\
+    &= 1/(1 - s_b)x \cdot \tan \alpha
+\end{array}
+$$
+
+在驱动工况下
+
+* 在驱动工况下$\Delta x = x' - x < 0$
+* 定义变量-驱动滑转率$s_d$(drive)
+
+$$
+s_d = -\frac{\Delta x}{x}
+$$
+
+$$
+\Delta y = \tan (1-s_d)x
+$$
