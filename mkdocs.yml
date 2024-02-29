@@ -6,6 +6,8 @@ site_url: https://www.starwaper.com
 
 nav:
   - 学习笔记:
+    - 数学:
+      STUDY/MatrixAnalysis.md
     - 控制:
       - STUDY/AdvancedControl.md
       - STUDY/KalmanFilter.md
