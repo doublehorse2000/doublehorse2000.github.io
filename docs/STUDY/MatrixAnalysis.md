@@ -93,3 +93,9 @@ $$
     V_1 + V_2 = \{\alpha = \alpha_1 + \alpha_2|\alpha\in V_1 且\alpha \in V_2\}
 \end{matrix}
 $$
+
+可以验证$V_1 \cap V_2$和$V_1+V_2$都构成$V$的线性子空间，分别称为$V_1$和$V_2$的交空间与和空间.
+
+* 若$\alpha \in V_1$或$\alpha \in V_2 \Rightarrow \alpha \in V_1 + V_2$
+* 若$\alpha \in V_1 + V_2 \not \Rightarrow \alpha \in V_1$或$\alpha \in V_2$
+
