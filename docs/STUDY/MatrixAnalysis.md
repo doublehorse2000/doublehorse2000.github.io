@@ -94,8 +94,16 @@ $$
 \end{matrix}
 $$
 
-可以验证$V_1 \cap V_2$和$V_1+V_2$都构成$V$的线性子空间，分别称为$V_1$和$V_2$的交空间与和空间.
+可以验证$V_1 \cap V_2$和$V_1+V_2$都构成$V$的线性子空间，分别称为$V_1$和$V_2$的**交空间**与**和空间**.
 
 * 若$\alpha \in V_1$或$\alpha \in V_2 \Rightarrow \alpha \in V_1 + V_2$
 * 若$\alpha \in V_1 + V_2 \not \Rightarrow \alpha \in V_1$或$\alpha \in V_2$
+* 一般来说，$V_1 \cap V_2$不构成$V$的子空间，但满足
 
+$$
+V_1 \cup V_2 \sim V_1 + V_2
+$$
+
+并且，$V_1 + V_2$是$V$中包含$V_1 \cup V_2$的最小子空间
+
+如果$V_1 \cap V_2 = \{\theta \}$,称和空间$V_1 + V_2$为**直和**，记为$V_1 \oplus V_2$
