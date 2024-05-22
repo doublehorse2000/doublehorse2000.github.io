@@ -1,0 +1,1776 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="StarWaper and DoubleHorse's Personal Website">
+      
+      
+        <meta name="author" content="StarWaper, DoubleHorse">
+      
+      
+        <link rel="canonical" href="https://www.starwaper.com/STUDY/AdvancedControl/">
+      
+      
+        <link rel="prev" href="../MatrixAnalysis/">
+      
+      
+        <link rel="next" href="../KalmanFilter/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
+    
+    
+      
+        <title>现代控制理论基础 - StarWaper</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="StarWaper" class="md-header__button md-logo" aria-label="StarWaper" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            StarWaper
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              现代控制理论基础
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../MatrixAnalysis/" class="md-tabs__link">
+          
+  
+  学习笔记
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../MUSIC/Musical_Acoustics/" class="md-tabs__link">
+          
+  
+  音乐
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../TEST/test/" class="md-tabs__link">
+          
+  
+  测试网站
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="StarWaper" class="md-nav__button md-logo" aria-label="StarWaper" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    StarWaper
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    学习笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    数学
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            数学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MatrixAnalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    矩阵分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    控制
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            控制
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    现代控制理论基础
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    现代控制理论基础
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、状态空间
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、状态空间">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 理论
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 例子
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 状态空间方程和拉普拉斯变换的关系
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4状态空间方程的解
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、相图相轨迹
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、相图相轨迹">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1总结
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      三 系统的可控性
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      四 系统的稳定性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四 系统的稳定性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 稳定性的定义
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../KalmanFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    卡尔曼滤波
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CasadiLearning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Casadi学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    车辆
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            车辆
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VechichDynamics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    车辆动力学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SelfDrivingCarDesign/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    无人车辆设计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    音乐
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            音乐
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    声音学
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            声音学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Musical_Acoustics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    音乐声学基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Musical_Instrument/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐器音学特性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    编曲
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            编曲
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Music_Theory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    VOCALOID
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            VOCALOID
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Voice/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    声乐基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Synthesizer_V/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Synthesizer V 学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    测试网站
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            测试网站
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TEST/test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    这是一个一级标题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、状态空间
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一、状态空间">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.1 理论
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 例子
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 状态空间方程和拉普拉斯变换的关系
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4状态空间方程的解
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、相图相轨迹
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、相图相轨迹">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1总结
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      三 系统的可控性
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      四 系统的稳定性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="四 系统的稳定性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1 稳定性的定义
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">现代控制理论基础<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p><a href="https://www.bilibili.com/video/BV1yx411u7iX/?share_source=copy_web&amp;vd_source=6fcbce3c943e3eb2d721be0364c24be">【Advanced控制理论】</a></p>
+<h2 id="_2">一、状态空间<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="11">1.1 理论<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
+<ul>
+<li>在用状态空间法分析系统时，系统的动态特性是用由状态变量构成的一阶微分方程组来描述的</li>
+<li>状态变量：一个系统可以用<strong>最小个数</strong>的一组变量为<strong>状态变量</strong></li>
+<li>状态矢量：如果<span class="arithmatex">\(n\)</span>个状态变量用<span class="arithmatex">\(x_1(t), x_2(t), \cdots , x_n(t)\)</span>表示，并把这些状态变量看作是矢量<span class="arithmatex">\(x(t)\)</span>的分量，则<span class="arithmatex">\(x(t)\)</span>称为<strong>状态矢量</strong></li>
+</ul>
+<div class="arithmatex">\[
+x(t) = \begin{pmatrix}
+x_1(t)\newline
+x_2(t)\newline
+\vdots \newline
+x_n(t) \newline
+\end{pmatrix}
+\mathrm{或}
+x^T(t) = \begin{bmatrix}
+x_1(t), &amp; x_2(t), &amp; \cdots , &amp; x_n(t)
+\end{bmatrix}
+\]</div>
+<ul>
+<li>状态空间：以状态变量<span class="arithmatex">\(x_1(t), x_2(t),\cdots,x_n(t)\)</span>为坐标轴构建的<span class="arithmatex">\(n\)</span>维空间，称为<strong>状态空间</strong></li>
+<li>状态方程：由系统的状态变量构成的<strong>一阶微分方程组</strong>称为系统的状态方程</li>
+</ul>
+<div class="arithmatex">\[
+\dot{x} = Ax+bu
+\]</div>
+<ul>
+<li>输出方程：指定系统输出的情况下，该系统与状态变量间的函数关系，称为系统的<strong>输出方程</strong></li>
+</ul>
+<div class="arithmatex">\[
+y = cx
+\]</div>
+<ul>
+<li>状态空间表达式：状态方程和输出方程总和起来，构成对一个系统完整的动态描述称为系统的状态空间表达式</li>
+</ul>
+<div class="arithmatex">\[
+\begin{matrix}
+\dot{x}_1 = a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n + b_1u\newline
+\dot{x}_1 = a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n + b_1u\newline
+\vdots \newline
+\dot{x}_1 = a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n + b_1u\newline
+\end{matrix}
+\]</div>
+<div class="arithmatex">\[
+\begin{matrix}
+\dot{x} = Ax+bu\newline
+y = cx
+\end{matrix}
+\]</div>
+<ul>
+<li>其中，<span class="arithmatex">\(x = \begin{pmatrix}
+x_1 \newline x_2 \newline \vdots \newline x_n
+\end{pmatrix}\)</span>为<span class="arithmatex">\(n\)</span>维状态矢量;</li>
+<li><span class="arithmatex">\(A = \begin{pmatrix}
+a_{11} &amp; a_{12} &amp; \cdots &amp; a_{1n}\newline
+a_{21} &amp; a_{22} &amp; \cdots &amp; a_{2n}\newline
+\cdots &amp; \cdots &amp;  &amp; \cdots\newline
+a_{n1} &amp; a_{n2} &amp; \cdots &amp; a_{nn}\newline
+\end{pmatrix}\)</span>为系统内部状态的联系，称为系统矩阵，为<span class="arithmatex">\(n\times n\)</span>方阵;</li>
+<li><span class="arithmatex">\(b = \begin{pmatrix}
+b_1 \newline b_2 \newline \vdots \newline b_n
+\end{pmatrix}\)</span>为输入对状态的作用，称为输入矩阵或控制矩阵，这里为<span class="arithmatex">\(n\times 1\)</span>的矩阵</li>
+<li><span class="arithmatex">\(c = \begin{pmatrix}
+c_1, &amp; c_2 &amp; \cdots &amp; c_n
+\end{pmatrix}\)</span>为输出矩阵，这里是<span class="arithmatex">\(1\times n\)</span>的矩阵</li>
+</ul>
+<h3 id="12">1.2 例子<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p><img alt="弹簧阻尼系统" src="../image/SpringAndDamping.png" /></p>
+<p>以弹簧阻尼系统为例子，根据牛顿第二定律可以得到</p>
+<div class="arithmatex">\[
+\begin{matrix}
+    m\ddot{x} = f(x) - f_k - f_B \newline
+    m\ddot{x} + B\dot{x} + kx = f(t)
+\end{matrix}
+\]</div>
+<ul>
+<li>在经典控制理论中，使用<code>Laplace Transform</code>进行表达</li>
+</ul>
+<div class="arithmatex">\[
+\begin{matrix}
+ms^2X(s) + BsX(s) + kX(s) = F(s)\newline
+G(x) = \frac{X(s)}{F(s)} = \frac{1}{ms^2 + Bs + k}
+\end{matrix}
+\]</div>
+<ul>
+<li>在现代控制理论中，利用<code>state-space</code>来表示，利用<strong>输入、输出、状态变量</strong>的集合构成的<strong>微分方程</strong>来描述，对于二阶微分方程，需要两个状态变量来表征这个系统</li>
+</ul>
+<div class="arithmatex">\[
+\begin{cases}
+z_1 = x\newline
+z_2 = \dot{x}
+\end{cases}
+\Rightarrow
+\begin{cases}
+\dot{z}_1 = \dot{x} = z_2\newline
+\dot{z}_2 = \ddot{x}
+\end{cases}
+\]</div>
+<p>代入上面的式子有</p>
+<div class="arithmatex">\[
+\begin{cases}
+\dot{z}_1 = z_2\newline
+\dot{z}_2 = \frac{f(t)}{m} - \frac{k}{m}z_1 - \frac{B}{m}z_2 - f(t)
+\end{cases}
+\]</div>
+<p>写成矩阵的形式有</p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+\dot{z}_1 \newline
+\dot{z}_2 \newline
+\end{bmatrix} = \begin{bmatrix}
+    0 &amp; 1\newline
+    -\frac{k}{m} &amp; -\frac{B}{m}
+\end{bmatrix} = \begin{bmatrix}
+    z_1 \newline
+    z_2
+\end{bmatrix} + \begin{bmatrix}
+    0 \newline
+    \frac{1}{m}
+\end{bmatrix} \begin{bmatrix}
+    u(t)
+\end{bmatrix}
+\]</div>
+<p>系统状态随着时间变化有</p>
+<div class="arithmatex">\[
+y = \begin{bmatrix}
+    1 &amp; 0
+\end{bmatrix} \begin{bmatrix}
+    z_1 \newline
+    z_2
+\end{bmatrix} + \begin{bmatrix}
+    0
+\end{bmatrix} \begin{bmatrix}
+    u(t)
+\end{bmatrix}
+\]</div>
+<h3 id="13">1.3 状态空间方程和拉普拉斯变换的关系<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\begin{cases}
+    \dot{z} = Az + Bu\newline
+    y = cz + Du
+\end{cases} \rightleftarrows
+G(s) = \frac{X(s)}{F(s)} = \frac{Y(s)}{u(s)} = \frac{1}{ms^2 + Bs + k}
+\]</div>
+<p>针对状态空间方程进行拉普拉斯变换，可以得到</p>
+<div class="arithmatex">\[
+\begin{matrix}
+    \begin{cases}
+    \mathcal{L}(\dot{z}) = \mathcal{L}(Az + Bu) \newline
+    sZ(s) = AZ(s) + BU(s) \newline
+    (sI -A)Z(s) = BU(s) \newline
+    Z(s) = (sI-A)^{-1}BU(s)
+\end{cases} &amp; \begin{cases}
+    \mathcal{L}(y) = \mathcal{L}(cz+Du)\newline
+    Y(s) = cZ(s) + DU(s)
+\end{cases}
+\end{matrix}
+\]</div>
+<div class="arithmatex">\[
+\begin{matrix}
+    Y(s) = c(sI-A)^{-1}BU(s) + DU(s) \newline
+    G(s) = \frac{Y(s)}{U(s)} = c(sI - A)^{-1}B + D
+\end{matrix}
+\]</div>
+<p>先求解一下<span class="arithmatex">\((sI - A)^{-1}\)</span>的数值</p>
+<div class="arithmatex">\[
+    sI-A = \begin{bmatrix}
+        s &amp; 0 \newline
+        0 &amp; s
+    \end{bmatrix} - \begin{bmatrix}
+        0 &amp; 1 \newline
+        -\frac{k}{m} &amp; -\frac{B}{m}
+    \end{bmatrix} = \begin{bmatrix}
+        s &amp; -1 \newline
+        \frac{k}{m} &amp; s + \frac{B}{m}
+    \end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+(sI-A)^{-1} = \frac{(sI-A)^*}{|sI-A|} = \frac{\begin{bmatrix}
+        s+\frac{B}{m} &amp; 1\newline
+        -\frac{k}{m} &amp; s
+    \end{bmatrix}}{s(s + \frac{B}{m})+ \frac{k}{m}} = \frac{\begin{bmatrix}
+        s+\frac{B}{m} &amp; 1\newline
+        -\frac{k}{m} &amp; s
+    \end{bmatrix}}{s^2 + \frac{B}{m}s+\frac{k}{m}}
+\]</div>
+<div class="arithmatex">\[
+c(sI-A)^{-1}B = \begin{bmatrix}
+    1 &amp; 0
+\end{bmatrix} \frac{\begin{bmatrix}
+        s+\frac{B}{m} &amp; 1\newline
+        -\frac{k}{m} &amp; s
+    \end{bmatrix}}{s^2 + \frac{B}{m}s+\frac{k}{m}} \begin{bmatrix}
+        0 \newline
+        \frac{1}{m}
+    \end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+c(sI-A)^{-1}B = \frac{1/m}{s^2+\frac{B}{m}s+\frac{k}{m}} = G(s)
+\]</div>
+<h3 id="14">1.4状态空间方程的解<a class="headerlink" href="#14" title="Permanent link">&para;</a></h3>
+<p>考虑下面的式子</p>
+<div class="arithmatex">\[
+\begin{cases}
+    \dot{x}_1(t) = x_1(t) + x_2(t)\newline
+    \dot{x}_2(t) = 4x_1(t) - 2x_2(t)
+\end{cases} \Rightarrow \frac{\mathrm{d}\vec{x}}{\mathrm{d}t} = A \vec{x}
+\]</div>
+<p>其中<span class="arithmatex">\(A = \begin{bmatrix}
+    1 &amp; 1\newline
+    4 &amp; -2
+\end{bmatrix}\)</span></p>
+<p>类比高等数学当中的求解一阶微分方程的方法，可以得到</p>
+<div class="arithmatex">\[
+\vec{x}(t) = e^{At}\vec{x}(0)
+\]</div>
+<p>根据常识可以看出来<span class="arithmatex">\(e^{At}\)</span>是一个<span class="arithmatex">\(n\times n\)</span>的矩阵，从泰勒级数的方式来考虑</p>
+<div class="arithmatex">\[
+e^{at} = 1 + at + \frac{1}{2!}(at)^2 + \frac{1}{3!}(at)^3 + \cdots + \frac{1}{n!}(at)^n
+\]</div>
+<div class="arithmatex">\[
+e^{At} = 1 + At + \frac{1}{2!}(At)^2 + \frac{1}{3!}(At)^3 + \cdots + \frac{1}{n!}(At)^n
+\]</div>
+<ul>
+<li>若<span class="arithmatex">\(A = 0\)</span>，则<span class="arithmatex">\(e^{AT}=I\)</span></li>
+<li>若<span class="arithmatex">\(A = \begin{bmatrix}
+    \lambda_1 &amp; &amp; &amp; \newline
+    &amp; \lambda_2 &amp; &amp; \newline
+    &amp; &amp; \ddots &amp; \newline
+    &amp; &amp; &amp; &amp; \lambda_n \newline
+    \end{bmatrix}\)</span>，则<span class="arithmatex">\(e^{At} = \begin{bmatrix}
+    e^{\lambda_1t} &amp; &amp; &amp; \newline
+    &amp; e^{\lambda_2t} &amp; &amp; \newline
+    &amp; &amp; \ddots &amp; \newline
+    &amp; &amp; &amp; &amp; e^{\lambda_nt} \newline
+    \end{bmatrix}\)</span></li>
+<li>若<span class="arithmatex">\(A = P\Lambda P^{-1}\)</span>，则<span class="arithmatex">\(e^{At}=Pe^{\Lambda t}P^{-1}\)</span></li>
+</ul>
+<p>求解状态空间方程的解</p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}\vec{x}(t)}{\mathrm{d}t} = A\vec{x}(t) + B\vec{u}(t)
+\]</div>
+<div class="arithmatex">\[
+e^{-At}\frac{\mathrm{d}\vec{x}(t)}{\mathrm{d}t}-Ae^{-At}\vec{x}(t) = e^{-At}B\vec{u}(t)
+\]</div>
+<div class="arithmatex">\[
+\int^t_{t_0} \frac{\mathrm{d}(e^{-A\tau}\vec{x}(\tau))}{\mathrm{d}\tau} \mathrm{d}\tau= \int^t_{t_0} e^{-A\tau}B\vec{u}(\tau)\mathrm{d}\tau
+\]</div>
+<div class="arithmatex">\[
+e^{-A\tau}\vec{x}(\tau)|^t_{t_0} = \int^t_{t_0} e^{-A\tau}B\vec{u}(\tau)\mathrm{d}\tau
+\]</div>
+<div class="arithmatex">\[
+e^{-At}\vec{x}(t) = e^{-At_0}\vec{x}(t_0) + \int^t_{t_0} e^{-A\tau}B\vec{u}(\tau)\mathrm{d}\tau
+\]</div>
+<div class="arithmatex">\[
+\vec{x}(t) = e^{A(t-t_0)}\vec{x}(t_0) + \int^t_{t_0}e^{A(t-\tau)}B\vec{u}(\tau)\mathrm{d}\tau
+\]</div>
+<ul>
+<li>第一项称为状态转移矩阵，其中<span class="arithmatex">\(A\)</span>的特征值反应了这一项随着时间变化的趋势，如果所有的特征值均小于零，则有这一项最终变为零，这个是分析系统稳定性的一个方法</li>
+</ul>
+<h2 id="_3">二、相图相轨迹<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>相图和相轨迹<code>Phase Portrait</code>是一种通过直观的图形分析微分方程，特别是微分方程的方法。</p>
+<p>例如此式子的相图相轨迹为
+$$
+\begin{cases}
+\dot{x}_1 = x_2 - 0.5 x_1\
+\dot{x}_2 = \sin x_1
+\end{cases}
+$$</p>
+<p><img alt="phaseportrait" src="../image/phaseportrait.png" /></p>
+<p>分析一维情况利用下面的例子来举例子</p>
+<p><img alt="1-DPhasePortrait" src="../image/1-DPhasePortrait.png" /></p>
+<ul>
+<li>可以看到当<span class="arithmatex">\(x = \pm1\)</span>的时候，<span class="arithmatex">\(\dot{x} = 0\)</span></li>
+<li>当<span class="arithmatex">\(x&lt; -1\)</span>的时候，会逐渐靠近<span class="arithmatex">\(x\rightarrow-1\)</span></li>
+<li>当<span class="arithmatex">\(-1 &lt; x &lt; 1\)</span>的时候，会逐渐靠近<span class="arithmatex">\(x\rightarrow -1\)</span></li>
+<li>当<span class="arithmatex">\(x &gt; 1\)</span>的时候，会逐渐靠近<span class="arithmatex">\(x\rightarrow + \infty\)</span></li>
+<li>所以<span class="arithmatex">\(x = -1\)</span>是稳定点，<span class="arithmatex">\(x = 1\)</span>是不稳定点</li>
+</ul>
+<p>分析二维的情况</p>
+<div class="arithmatex">\[
+\dot{x} = A x + Bu
+\]</div>
+<p>令<span class="arithmatex">\(u = 0\)</span></p>
+<div class="arithmatex">\[
+\frac{\mathrm{d}}{\mathrm{d}t} \begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix} = \begin{bmatrix}
+a &amp; b\\
+c &amp; d\\
+\end{bmatrix} \begin{bmatrix}
+x_1 \\
+x_2\\
+\end{bmatrix}
+\]</div>
+<p>则有</p>
+<p>$$
+\begin{cases}
+\dot{x}<em 10="10">1 = ax_1\
+\dot{x}_2 = dx_2\
+\end{cases} \begin{cases}
+x</em> = 0\
+x_{20} = 0\
+\end{cases}</p>
+<p>$$</p>
+<ul>
+<li>case1:<span class="arithmatex">\(a=d&gt;0\)</span>​</li>
+<li><span class="arithmatex">\((0,0)\)</span>点叫做<code>source</code>,是<code>unstable</code>不稳定点</li>
+</ul>
+<p><img alt="1-DPhasePortrait" src="../image/2-DphaseportraitCase1.png" /></p>
+<ul>
+<li>case2:<span class="arithmatex">\(a &gt; 0, d &lt; 0\)</span>​</li>
+<li><span class="arithmatex">\((0,0)\)</span>点叫做<code>saddle</code></li>
+</ul>
+<p><img alt="1-DPhasePortrait" src="../image/2-DphaseportraitCase2.png" /></p>
+<ul>
+<li>case3：<span class="arithmatex">\(a,d &lt; 0\)</span>​</li>
+<li><span class="arithmatex">\((0,0)\)</span>点叫做<code>sink</code>，是<code>stable</code>稳定点</li>
+</ul>
+<p><img alt="1-DPhasePortrait" src="../image/2-DphaseportraitCase3.png" /></p>
+<p>进行一般形式的分析</p>
+<div class="arithmatex">\[
+\dot{x} = Ax
+\]</div>
+<div class="arithmatex">\[
+\begin{matrix}
+x = py\\
+\dot{y} = \Lambda y
+\end{matrix}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(x\)</span>的特征值决定了他的</li>
+</ul>
+<h3 id="21">2.1总结<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<div class="arithmatex">\[
+\begin{cases}
+\lambda_1 = a_1 + b_1i\\
+\lambda_2 = a_2 + b_2i
+\end{cases}
+\]</div>
+<ul>
+<li>当<span class="arithmatex">\(a_1,a_2&lt;0,b_1 = b_2 = 0\)</span>​，是<code>stable</code></li>
+</ul>
+<p><img alt="1-DPhasePortrait" src="../image/2_1_1.png" /></p>
+<ul>
+<li>当<span class="arithmatex">\(a_1 &gt; 0,a_2 &lt; 0, b_1 = b_2 = 0\)</span>​，是<code>saddle</code></li>
+</ul>
+<p><img alt="1-DPhasePortrait" src="../image/2_1_2.png" /></p>
+<ul>
+<li>当<span class="arithmatex">\(a_1,a_2&gt;0,b_1 = b_2 = 0\)</span>​，是<code>unstable</code></li>
+</ul>
+<p><img alt="1-DPhasePortrait" src="../image/2_1_3.png" /></p>
+<ul>
+<li>当<span class="arithmatex">\(a_1 = a_2 = 0\)</span>​，是<code>center</code></li>
+</ul>
+<p><img alt="1-DPhasePortrait" src="../image/2_1_4.png" /></p>
+<ul>
+<li>当<span class="arithmatex">\(a_1,a_2&gt;0\)</span>​,是<code>unstable</code></li>
+</ul>
+<p><img alt="1-DPhasePortrait" src="../image/2_1_5.png" /></p>
+<ul>
+<li>当<span class="arithmatex">\(a_1,a_2&lt;0\)</span>​，是<code>stable</code></li>
+</ul>
+<p><img alt="1-DPhasePortrait" src="../image/2_1_6.png" /></p>
+<h2 id="_4">三 系统的可控性<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>有一个离散系统</li>
+</ul>
+<div class="arithmatex">\[
+\begin{array}{ll}
+x_{k+1} &amp;= Ax_k+Bu_k\\
+x_1 &amp;= Ax_0+Bu_0 = Bu_0\\
+x_2 &amp;= Ax_1 + Bu_1 = ABu_0+Bu_1\\
+x_3 &amp;=Ax_2+Bu_2 = A^2Bu_0+ABu_1+Bu_2\\
+\vdots\\
+x_n &amp;= Ax_{n-1}+Bu_{n-1} = A^{n-1}Bu_0+\cdots+ABu_{n-2}+Bu_{n-1}
+\end{array}
+\]</div>
+<div class="arithmatex">\[
+x_n = \begin{bmatrix}
+B &amp; AB &amp; \cdots &amp; A^{n-1}B
+\end{bmatrix} \begin{bmatrix}
+u_{n-1}\\
+u_{n-2}\\
+\vdots\\
+u_0
+\end{bmatrix} = Co \times u
+\]</div>
+<p>其中</p>
+<div class="arithmatex">\[
+\begin{matrix}
+A \in R^{n\times n}\\
+B \in R^{n\times r}\\
+Co \in R^{n\times nr}\\
+\end{matrix}
+\]</div>
+<p>若<span class="arithmatex">\(u\)</span>有解，则</p>
+<div class="arithmatex">\[
+Rank(Co) = n
+\]</div>
+<h2 id="_5">四 系统的稳定性<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<h3 id="41">4.1 稳定性的定义<a class="headerlink" href="#41" title="Permanent link">&para;</a></h3>
+<p>李雅普诺夫意义下的稳定性（Stability in the Sense of Lyapunov）</p>
+<ul>
+<li>如果平衡点<span class="arithmatex">\(z_f = 0\)</span>满足</li>
+</ul>
+<div class="arithmatex">\[
+\forall t_0, \forall \varepsilon &gt;0,\exists \delta (t_0, \varepsilon):\parallel z(t_0) \parallel &lt; \delta(t_0, \varepsilon) \rightarrow \forall t \geq t_0, \parallel z(t) &lt; \varepsilon
+\]</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2016 - 2020 StarWaper&Doublehorse
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight", "header.autohide", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

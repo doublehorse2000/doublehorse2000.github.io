@@ -1,0 +1,1578 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="StarWaper and DoubleHorse's Personal Website">
+      
+      
+        <meta name="author" content="StarWaper, DoubleHorse">
+      
+      
+        <link rel="canonical" href="https://www.starwaper.com/STUDY/KalmanFilter/">
+      
+      
+        <link rel="prev" href="../AdvancedControl/">
+      
+      
+        <link rel="next" href="../CasadiLearning/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
+    
+    
+      
+        <title>卡尔曼滤波 - StarWaper</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="StarWaper" class="md-header__button md-logo" aria-label="StarWaper" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            StarWaper
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              卡尔曼滤波
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../MatrixAnalysis/" class="md-tabs__link">
+          
+  
+  学习笔记
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../MUSIC/Musical_Acoustics/" class="md-tabs__link">
+          
+  
+  音乐
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../TEST/test/" class="md-tabs__link">
+          
+  
+  测试网站
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="StarWaper" class="md-nav__button md-logo" aria-label="StarWaper" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    StarWaper
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    学习笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    数学
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            数学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MatrixAnalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    矩阵分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    控制
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            控制
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AdvancedControl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    现代控制理论基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    卡尔曼滤波
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    卡尔曼滤波
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      递归算法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="递归算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      计算步骤
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据融合
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      协方差矩阵
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      卡尔曼增益/因数详细推导
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      误差协方差矩阵
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CasadiLearning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Casadi学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    车辆
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            车辆
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../VechichDynamics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    车辆动力学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SelfDrivingCarDesign/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    无人车辆设计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    音乐
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            音乐
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    声音学
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            声音学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Musical_Acoustics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    音乐声学基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Musical_Instrument/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐器音学特性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    编曲
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            编曲
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Music_Theory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    VOCALOID
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            VOCALOID
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Voice/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    声乐基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Synthesizer_V/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Synthesizer V 学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    测试网站
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            测试网站
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TEST/test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    这是一个一级标题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      递归算法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="递归算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      计算步骤
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      数据融合
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      协方差矩阵
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      卡尔曼增益/因数详细推导
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      误差协方差矩阵
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">卡尔曼滤波<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">递归算法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Optimal Recursire Data Processing Algorithm</p>
+<ul>
+<li>不确定性</li>
+<li>不存在完美的数学模型</li>
+<li>系统的扰动不可控，也很难建模</li>
+<li>测量传感器存在误差</li>
+</ul>
+<p>估真实数据 -&gt; 取平均值</p>
+<div class="arithmatex">\[
+\begin{array}{ll}
+\hat{x}_k &amp;= \frac{1}{k}(z_1 + z_2 + \cdots + z_k)\\
+&amp;=\frac{1}{k}(z_1 + z_2 + \cdots + z_{k-1}) + \frac{1}{k}z_k\\
+&amp;=\frac{k-1}{k}\hat{x}_{k-1} + \frac{1}{k}z_k\\
+\end{array}
+\]</div>
+<p>因此有</p>
+<div class="arithmatex">\[
+\begin{matrix}
+  \hat{x}_k = \hat{x}_{k-1} + \frac{1}{k}(z_k - \hat{x}_{k-1})\\
+\hat{x}_k = \hat{x}_{k-1} + K_k(z_k - \hat{x}_{k-1})\\
+\mathrm{当前的估计值} = \mathrm{上一次的估计值} + \mathrm{系数} \times (\mathrm{当前测量值} - \mathrm{上一次的估计值})
+\end{matrix}
+\]</div>
+<p><span class="arithmatex">\(K_k\)</span>：Kalman Gain 卡尔曼增益/因数</p>
+<ul>
+<li>估计误差<span class="arithmatex">\(e_{EST}\)</span>：估计值和真实值的差距</li>
+<li>测量误差<span class="arithmatex">\(e_{MEA}\)</span>：测量值与真实值的差距</li>
+</ul>
+<div class="arithmatex">\[
+K_k = \frac{e_{EST_{k-1}}}{e_{EST_{k-1}}+e_{MEA_k}}
+\]</div>
+<p>讨论：在<span class="arithmatex">\(k\)</span>时刻：</p>
+<ul>
+<li><span class="arithmatex">\(e_{EST_{k-1}} &gt;&gt; e_{MEA_{k}}\; k\rightarrow1\;\hat{x}_k = z_k\)</span></li>
+<li><span class="arithmatex">\(e_{EST_{k-1}}&lt;&lt;e_{MEA_k}\;k\rightarrow 0\; \hat{x}_k = \hat{x}_{k-1}\)</span></li>
+</ul>
+<h3 id="_3">计算步骤<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Step1：计算Kalman Gain</li>
+</ul>
+<div class="arithmatex">\[
+K_k = \frac{e_{EST_{k-1}}}{e_{EST_{k-1}}+e_{MEA_k}}
+\]</div>
+<ul>
+<li>Step2：计算<span class="arithmatex">\(\hat{x}_k\)</span></li>
+</ul>
+<div class="arithmatex">\[
+\hat{x}_k = \hat{x}_{k-1} + K_k(z_k - \hat{x}_{k-1})
+\]</div>
+<ul>
+<li>Step3：更新<span class="arithmatex">\(e_{EST_k}\)</span></li>
+</ul>
+<div class="arithmatex">\[
+e_{EST_k} = (1-K_k)e_{EST_{k-1}}
+\]</div>
+<h2 id="_4">数据融合<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>有两个秤，其测量的结果分别为<span class="arithmatex">\(z_1,z_2\)</span>，标准差分别为<span class="arithmatex">\(\sigma_1, \sigma_2\)</span></p>
+<div class="arithmatex">\[
+\begin{array}{ll}
+z_1 = 30g &amp; \sigma_1 = 2g\\
+z_2 = 32g &amp; \sigma_2 = 4g\\
+\end{array}
+\]</div>
+<p>估计真实值<span class="arithmatex">\(\hat{z}\)</span></p>
+<div class="arithmatex">\[
+\hat{z} = z_1 + K(z_1 - z_2)\;\;\;\;k\in[0,1]
+\]</div>
+<p>求K使得<span class="arithmatex">\(\sigma_{\hat{z}}\)</span>最小-&gt;方差<span class="arithmatex">\(Var(\hat{z})\)</span>最小</p>
+<div class="arithmatex">\[
+\begin{array}{ll}
+\sigma_{\hat{z}}^2 &amp;= Var(z_1 + k(z_2 - z_1))\\  
+&amp;= Var((1-k)z_1 + kz_2)\\
+&amp;= Var((1-k)z_1) + Var(kz_2)\\
+&amp;= (1-k)^2 Var(z_1) + k^2 Var(z_2)\\
+&amp;= (1-k)^2 \sigma_1^2 + k^2 \sigma_2^2
+\end{array}
+\]</div>
+<div class="arithmatex">\[
+\frac{d \sigma_{\hat{z}}^2}{dk} = 0\\
+k = \frac{\sigma_1^2}{\sigma_1^2 + \sigma_2^2}\\
+\]</div>
+<h2 id="_5">协方差矩阵<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<div class="arithmatex">\[
+P = \begin{bmatrix}{}
+\sigma_x^2 &amp; \sigma_x \sigma_y &amp; \sigma_x \sigma_z\\
+\sigma_y \sigma_x &amp; \sigma_y^2 &amp; \sigma_y \sigma_z\\
+\sigma_z \sigma_x &amp; \sigma_z \sigma_y &amp; \sigma_z^2
+\end{bmatrix}
+\]</div>
+<ul>
+<li>其中对角线上的元素比较熟悉，是方差其公式为</li>
+</ul>
+<div class="arithmatex">\[
+\sigma_{x}^2 = \frac{1}{n} \sum_{i = 1}^{n}(x_i - \bar{x})^2
+\]</div>
+<ul>
+<li>其他元素为协方差，表示了两个变量之间的关系</li>
+</ul>
+<div class="arithmatex">\[
+\sigma_x \sigma_y = \frac{1}{n}\sum_{i = 1}^{n}(x_i - \bar{x})(y_i - \bar{y}) = \sigma_y \sigma_x
+\]</div>
+<ul>
+<li>计算机编程求解协方差矩阵可以</li>
+</ul>
+<div class="arithmatex">\[
+a = \begin{bmatrix}
+  x_1 &amp; y_1 &amp; z_1 \\
+  x_2 &amp; y_2 &amp; z_2 \\
+  x_3 &amp; y_3 &amp; z_3 \\
+\end{bmatrix} - \frac{1}{3}\begin{bmatrix}
+  1 &amp; 1 &amp; 1\\
+  1 &amp; 1 &amp; 1\\
+  1 &amp; 1 &amp; 1\\
+\end{bmatrix} \begin{bmatrix}
+  x_1 &amp; y_1 &amp; z_1 \\
+  x_2 &amp; y_2 &amp; z_2 \\
+  x_3 &amp; y_3 &amp; z_3 \\
+\end{bmatrix}
+\]</div>
+<div class="arithmatex">\[
+P = \frac{1}{3}a^Ta
+\]</div>
+<h2 id="_6">卡尔曼增益/因数详细推导<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<p>状态空间方程</p>
+<div class="arithmatex">\[
+x_k = Ax_{k-1} + Bu_{k-1} + w_{k-1}\\
+z_k = Hx_k + v_k
+\]</div>
+<blockquote>
+<ul>
+<li>其中<span class="arithmatex">\(w_{k-1}\)</span>为过程噪声，服从<span class="arithmatex">\(p(w)\sim(0,Q)\)</span>的正态分布，<span class="arithmatex">\(0\)</span>代表了正态分布的期望为<span class="arithmatex">\(0\)</span>，<span class="arithmatex">\(Q\)</span>为协方差矩阵</li>
+</ul>
+<div class="arithmatex">\[
+Q = E\left[
+\begin{array}{}
+w &amp; w^T
+\end{array}{}
+\right]
+=E\left[
+\left[
+\begin{array}{}
+w_1\\
+w_2
+\end{array}{}
+\right]
+\left[
+\begin{array}{}
+w_1 &amp; w_2
+\end{array}{}
+\right]
+\right] = \left[
+\begin{array}{}
+E(w_1^2)=\sigma_{w_1}^2 &amp; E(w_1w_2)=\sigma_{w_1}\sigma_{w_2}\\
+E(w_2w_1)=\sigma_{w_2}\sigma_{w_1} &amp; E(w_2^2) = \sigma_{w_2}^2
+\end{array}{}
+\right]
+\]</div>
+<div class="arithmatex">\[
+VAR(X) = E(X^2) - E^2(X)
+\]</div>
+<ul>
+<li>其中<span class="arithmatex">\(v_k\)</span>为测量噪声，服从<span class="arithmatex">\(p(v)\sim (0,R)\)</span>的正态分布</li>
+</ul>
+</blockquote>
+<p>由于不知道过程噪声，因此根据上一次的实际量和上一次的控制量，可以写出状态空间方程</p>
+<div class="arithmatex">\[
+\hat{x}_{\bar{k}} = Ax_{k-1} + Bu_{k-1}\\
+z_k = Hx_k \rightarrow \hat{x}_{MEA_k} = H^- z_k\\
+\]</div>
+<blockquote>
+<p>其中<span class="arithmatex">\(\hat{x}_{\bar{k}}\)</span>代表了状态量的先验估计，因此后面不带过程噪声</p>
+</blockquote>
+<p>因此可以通过测量的量和先验估计量来估计一个统计概率上最优的解</p>
+<div class="arithmatex">\[
+\hat{x}_k = \hat{x}_{\bar{k}} + G(H^- z_k - \hat{x}_{\bar{k}})\;\;\;G\in[0,1]\\
+\]</div>
+<p>令<span class="arithmatex">\(G = K_k H\)</span></p>
+<div class="arithmatex">\[
+\hat{x}_k = \hat{x}_{\bar{k}} + K_k(z_k - H\hat{x}_{\bar{k}})\;\;K_k \in[0, H^-]
+\]</div>
+<p>寻找<span class="arithmatex">\(K_k\)</span>使得<span class="arithmatex">\(\hat{x}_k\)</span>最接近<span class="arithmatex">\(x_k\)</span></p>
+<p>令<span class="arithmatex">\(e_k = x_k - \hat{x}_k\)</span>，求解使<span class="arithmatex">\(P=E[e e^T]\)</span>最小的<span class="arithmatex">\(K_k\)</span>的数值</p>
+<p>首先化简一下<span class="arithmatex">\(e_k\)</span></p>
+<div class="arithmatex">\[
+\begin{array}{ll}
+x_k - \hat{x}_k &amp;= x_k - (\hat{x}_{\bar{k}} + K_k(z_k - H\hat{x}_{\bar{k}})) \\
+&amp;= x_k - \hat{x}_{\bar{k}} - K_kz_k + K_kH\hat{x}_{\bar{x}}\\
+&amp; = x_k - \hat{x}_{\bar{k}} - K_kHx_k - K_kv_k + K_kH\hat{x}_{\bar{x}}\\
+&amp;= (x_k - \hat{x}_{\bar{k}}) - K_kH(x_k - \hat{x}_{\bar{k}}) - K_kv_k\\
+&amp;= (I - K_kH)(x_k - \hat{x}_{\bar{k}})- K_kv_k\\
+&amp;= (I - K_kH)e_{\bar{k}} - K_kv_k\\
+\end{array}
+\]</div>
+<div class="arithmatex">\[
+\begin{array}{ll}
+  P&amp;=E[e e^T]\\
+  &amp;= E[(x_k - \hat{x}_{\bar{k}})(x_k - \hat{x}_{\bar{k}})^T]\\
+  &amp;= E[((I - K_kH)e_{\bar{k}}- K_kv_k)((I - K_kH)e_{\bar{k}}- K_kv_k)^T]\\
+  &amp;= E[((I - K_kH)e_{\bar{k}}- K_kv_k)(e_{\bar{k}}^T(I - K_kH)^T- v_k^TK_k^T)]\\
+\end{array}
+\]</div>
+<p>可以将上述的等式拆成四个部分，分别为</p>
+<div class="arithmatex">\[
+\begin{array}{ll}
+  E[(I - K_kH)e_{\bar{k}}e_{\bar{k}}^T(I-K_kH)^T]\\\\
+  E[(I - K_kH)e_{\bar{k}}v_k^TK_k^T]\\\\
+  E[K_kv_ke_{\bar{k}}^T(I - K_kH)^T]\\\\
+  E[K_kv_kv_k^TK_k^T]\\\\
+\end{array}
+\]</div>
+<p>针对第二项和第三项可以有</p>
+<div class="arithmatex">\[
+\begin{array}{ll}
+  E[(I - K_kH)e_{\bar{k}}v_k^TK_k^T] &amp;= (I - K_kH)E[e_{\bar{k}}v_k^TK_k^T]\\
+  &amp;= (I - K_kH)E[e_{\bar{k}}]\cdot E[v_k^T] K_k^T\\
+  &amp;= 0\\
+  E[K_kv_ke_{\bar{k}}^T(I - K_kH)^T] &amp;= K_kE[v_k]\cdot E[e_{\bar{k}}^T](I - K_kH)^T\\
+  &amp;= 0\\
+\end{array}
+\]</div>
+<p>针对第一项有</p>
+<div class="arithmatex">\[
+\begin{array}{ll}
+  E[(I - K_kH)e_{\bar{k}}e_{\bar{k}}^T(I-K_kH)^T] &amp;= (I-K_kH)E[e_{\bar{k}}e_{\bar{k}}^T](I-K_kH)^T \\
+  &amp;= (I-K_kH)P_{\bar{k}}(I-K_kH)^T\\
+  &amp;= (P_{\bar{k}} - K_kHP_{\bar{k}})(I - H^TK_k^T)\\
+  &amp;= P_{\bar{k}} - K_kHP_{\bar{k}} - P_{\bar{k}}H^TK_k^T + K_kHP_{\bar{k}}H^TK_k^T
+\end{array}
+\]</div>
+<p>针对第四项有</p>
+<div class="arithmatex">\[
+\begin{array}{ll}
+  E[K_kv_kv_k^TK_k^T] &amp;= K_kRK_k^T
+\end{array}
+\]</div>
+<p>综上有</p>
+<div class="arithmatex">\[
+P = P_{\bar{k}} - K_kHP_{\bar{k}} - P_{\bar{k}}H^TK_k^T + K_kHP_{\bar{k}}H^TK_k^T + K_k R K_k^T
+\]</div>
+<p>需要寻找<span class="arithmatex">\(tr(P)\)</span>最小</p>
+<div class="arithmatex">\[
+tr(P) = tr(P_{\bar{k}}) - 2tr(K_kHP_{\bar{k}}) + tr(K_kHP_{\bar{k}}H^TK_k^T) + tr(K_k R K_k^T)
+\]</div>
+<div class="arithmatex">\[
+\begin{array}{ll}
+  \frac{\mathrm{d}tr(P)}{\mathrm{d}K_k} &amp;= 0 - 2 (HP_{\bar{k}})^T + 2K_kHP_{\bar{k}}H^T + 2K_kR\\
+  &amp; = 0
+\end{array}
+\]</div>
+<div class="arithmatex">\[
+  -P_{\bar{k}}H+K_k(HP_{\bar{k}}H^T+R) = 0
+\]</div>
+<div class="arithmatex">\[
+K_k = \frac{P_{\bar{k}}H^T}{HP_{\bar{k}}H^T+R}
+\]</div>
+<blockquote>
+<div class="arithmatex">\[
+\frac{\mathrm{d}tr(AB)}{\mathrm{d}A} = B^T
+\]</div>
+<div class="arithmatex">\[
+\frac{\mathrm{d}tr(ABA^T)}{\mathrm{d}A} = A(B + B^T)
+\]</div>
+</blockquote>
+<ul>
+<li>当<span class="arithmatex">\(R \rightarrow \infty\)</span>时，说明测量噪声很大，<span class="arithmatex">\(K_k \rightarrow 0, \hat{x}_k \rightarrow \hat{x}_{\bar{k}}\)</span></li>
+<li>当<span class="arithmatex">\(R \rightarrow 0\)</span>时，说明测量噪声很小，<span class="arithmatex">\(K_k \rightarrow H^-,\hat{x}_k \rightarrow H^-z_k\)</span></li>
+</ul>
+<h2 id="_7">误差协方差矩阵<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<div class="arithmatex">\[
+x_k = Ax_{k-1} + Bi_{k-1} + w_{k-1}
+\]</div>
+<div class="arithmatex">\[
+z_k = Hx_k + v_k
+\]</div>
+<ul>
+<li>先验估计<span class="arithmatex">\(\hat{x}_{\bar{k}} = A \hat{x}_{k-1} + Bu_{k-1}\)</span></li>
+<li>后验估计<span class="arithmatex">\(\hat{x}_k = \hat{x}_{\bar{k}} + K_k(z_k - H\hat{x}_{\bar{k}})\)</span></li>
+<li>卡尔曼增益<span class="arithmatex">\(K_k = (P^-_k H^T) / (HP^-_kH^T+R)\)</span></li>
+<li>其中仅有<span class="arithmatex">\(P^-_k\)</span>是未知的，因此需要求解</li>
+</ul>
+<div class="arithmatex">\[
+P_k^- = E[e_k^- e_k^{-T}]
+\]</div>
+<div class="arithmatex">\[
+\begin{array}{ll}
+  e_k^- &amp;= x_k - \hat{x}_{\bar{k}}\\
+  &amp;= Ax_{k-1} + Bu_{k-1} + w_{k-1} - A \hat{x}_{k-1} - Bu_{k-1}\\
+  &amp;= A(x_{k-1} - \hat{x}_{k-1}) + w_{k-1}\\
+  &amp;= Ae_{k-1} + w_{k-1}
+\end{array}
+\]</div>
+<div class="arithmatex">\[
+\begin{array}{ll}
+  P_k^- &amp;= E[(Ae_{k-1} + w_{k-1})(e_{k-1}^TA + w_{k-1}^T)]\\
+  &amp;= E[Ae_{k-1}e_{k-1}^TA^T + Ae_{k-1}w_{k-1}^T + w_{k-1}e_{k-1}^TA+w_{k-1}w_{k-1}^T]\\
+  &amp;= A E[e_{k-1}e_{k-1}^T]A^T + E[w_{k-1}w_{k-1}^T]\\
+  &amp;= A P_{k-1}^-A^T+Q
+\end{array}
+\]</div>
+<ul>
+<li>预测</li>
+<li>先验：<span class="arithmatex">\(\hat{x}_{\bar{k}} = A \hat{x}_{k-1}+Bu_{k-1}\)</span></li>
+<li>先验误差协方差:<span class="arithmatex">\(P_k^- = A P_{k-1}A^T + Q\)</span></li>
+<li>校正</li>
+<li>卡尔曼增益：<span class="arithmatex">\(K_k = (P^-_k H^T) / (HP^-_kH^T+R)\)</span></li>
+<li>后验估计：<span class="arithmatex">\(\hat{x}_k = \hat{x}_{\bar{k}} + K_k(z_k - H\hat{x}_{\bar{k}})\)</span></li>
+<li>更新协方差矩阵:<span class="arithmatex">\(P_k = (I - K_kH)P_k^-\)</span></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2016 - 2020 StarWaper&Doublehorse
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight", "header.autohide", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

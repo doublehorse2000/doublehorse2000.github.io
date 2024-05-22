@@ -1,0 +1,2096 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="StarWaper and DoubleHorse's Personal Website">
+      
+      
+        <meta name="author" content="StarWaper, DoubleHorse">
+      
+      
+        <link rel="canonical" href="https://www.starwaper.com/STUDY/VechichDynamics/">
+      
+      
+        <link rel="prev" href="../CasadiLearning/">
+      
+      
+        <link rel="next" href="../SelfDrivingCarDesign/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.24">
+    
+    
+      
+        <title>车辆动力学 - StarWaper</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="StarWaper" class="md-header__button md-logo" aria-label="StarWaper" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            StarWaper
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              车辆动力学
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9h-1.9M20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69m-9.15 3.96h2.3L12 9l-1.15 3.65Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../MatrixAnalysis/" class="md-tabs__link">
+          
+  
+  学习笔记
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../MUSIC/Musical_Acoustics/" class="md-tabs__link">
+          
+  
+  音乐
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../TEST/test/" class="md-tabs__link">
+          
+  
+  测试网站
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="StarWaper" class="md-nav__button md-logo" aria-label="StarWaper" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    StarWaper
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    学习笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            学习笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_1" id="__nav_1_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    数学
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            数学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MatrixAnalysis/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    矩阵分析
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_1_2" id="__nav_1_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    控制
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            控制
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../AdvancedControl/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    现代控制理论基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../KalmanFilter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    卡尔曼滤波
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CasadiLearning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Casadi学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1_3" id="__nav_1_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    车辆
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_1_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            车辆
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    车辆动力学
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    车辆动力学
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一章 轮胎模型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一章 轮胎模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      车辆侧向力学基础
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="车辆侧向力学基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      （一）附着力、计算牵引力和牵引力
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      （二）轮胎的三种半径
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      （三）纯滚动、滑转与滑移
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      （四）轮胎坐标系
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      （五）轮胎的侧偏特性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      （六）回正力矩
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 轮胎纵滑和侧滑下的简化模型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 轮胎纵滑和侧滑下的简化模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      （一）简化模型的假设条件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 轮胎侧偏特性的半经验模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-swift" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 轮胎的swift模型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二章 悬架系统特性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二章 悬架系统特性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 扭杆弹簧
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 扭杆弹簧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      （一）主要参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      （二）刚度分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      （三）扭杆弹簧刚度的影响因素
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 油气弹簧
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 油气弹簧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1 油气弹簧概述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.2 单气室油气弹簧
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2.2 单气室油气弹簧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      主要参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      刚度推导
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三章 转向轮和前轴的横摆
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第三章 转向轮和前轴的横摆">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 陀螺效应
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 陀螺效应">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      （一）定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      （二）陀螺的自转动量矩
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      （三）陀螺的动量矩定理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      第七章 关键部件动力学模型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第七章 关键部件动力学模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      发动机激励模型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SelfDrivingCarDesign/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    无人车辆设计
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    音乐
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            音乐
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    声音学
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            声音学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Musical_Acoustics/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    音乐声学基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Musical_Instrument/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐器音学特性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    编曲
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            编曲
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Music_Theory/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐理
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    VOCALOID
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            VOCALOID
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Voice/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    声乐基础
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MUSIC/Synthesizer_V/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Synthesizer V 学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    测试网站
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            测试网站
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TEST/test/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    这是一个一级标题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一章 轮胎模型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一章 轮胎模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      车辆侧向力学基础
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="车辆侧向力学基础">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      （一）附着力、计算牵引力和牵引力
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      （二）轮胎的三种半径
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      （三）纯滚动、滑转与滑移
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      （四）轮胎坐标系
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      （五）轮胎的侧偏特性
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      （六）回正力矩
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.2 轮胎纵滑和侧滑下的简化模型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 轮胎纵滑和侧滑下的简化模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      （一）简化模型的假设条件
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.3 轮胎侧偏特性的半经验模型
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-swift" class="md-nav__link">
+    <span class="md-ellipsis">
+      1.4 轮胎的swift模型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二章 悬架系统特性
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二章 悬架系统特性">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 扭杆弹簧
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.1 扭杆弹簧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      （一）主要参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      （二）刚度分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      （三）扭杆弹簧刚度的影响因素
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 油气弹簧
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2 油气弹簧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#221" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.1 油气弹簧概述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#222" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2.2 单气室油气弹簧
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.2.2 单气室油气弹簧">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      主要参数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      刚度推导
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三章 转向轮和前轴的横摆
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第三章 转向轮和前轴的横摆">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 陀螺效应
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 陀螺效应">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      （一）定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      （二）陀螺的自转动量矩
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      （三）陀螺的动量矩定理
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      第七章 关键部件动力学模型
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第七章 关键部件动力学模型">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_22" class="md-nav__link">
+    <span class="md-ellipsis">
+      发动机激励模型
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="_1">车辆动力学<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="_2">第一章 轮胎模型<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<h3 id="_3">车辆侧向力学基础<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<h4 id="_4">（一）附着力、计算牵引力和牵引力<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h4>
+<p>附着力：由作用在驱动轮上的转矩引起的，地面对车轮产生的能用于驱动车轮前进的<strong>最大切向</strong>力。</p>
+<div class="arithmatex">\[
+\begin{array}{ll}
+\mathrm{附着力} &amp;= \mathrm{车轮的附着重} \times \mathrm{附着系数}\\
+F_{\varphi} &amp;= G_{\varphi} \cdot \varphi\\
+\end{array}
+\]</div>
+<ul>
+<li>附着重：车轮受到的法向向下的载荷</li>
+<li>附着系数：附着力与附着重的比值</li>
+<li>附着率：地面对车轮的<strong>驱动力</strong>与附着重的比值</li>
+<li>附着系数是最大驱动力和附着重的比重，附着率是驱动力与附着重的比值</li>
+<li>附着系数同时与路面和车轮特性有关</li>
+</ul>
+<p>计算牵引力<span class="arithmatex">\(F_j\)</span>​​：由动力系统力矩计算得到的作用于车轮的牵引力（驱动力）。</p>
+<ul>
+<li>当计算牵引力大于附着力的情况下，车轮会打滑</li>
+</ul>
+<p>附着力、计算牵引力和牵引力<span class="arithmatex">\(F\)</span>的关系</p>
+<ul>
+<li>当<span class="arithmatex">\(F_j &lt; F_{\varphi}\)</span>时，<span class="arithmatex">\(F = F_j\)</span></li>
+<li>当<span class="arithmatex">\(F_j = F_{\varphi}\)</span>时，<span class="arithmatex">\(F = F_\varphi\)</span></li>
+<li>当<span class="arithmatex">\(F_j &gt; F_{\varphi}\)</span>时，<span class="arithmatex">\(F &lt; F_j\;\;\;\;F=\mathrm{附着重}\times \mathrm{附着率}\)</span>​</li>
+</ul>
+<p>车辆的加速度为</p>
+<div class="arithmatex">\[
+a \leq \frac{F_{\varphi}}{m}=\frac{G_\varphi \cdot \varphi}{m} = \frac{G + F_{ag}}{m} \cdot \varphi
+\]</div>
+<ul>
+<li>当忽略空气对车辆的下压力<span class="arithmatex">\(F_{ag}\)</span>时</li>
+</ul>
+<div class="arithmatex">\[
+a \leq \varphi \cdot g
+\]</div>
+<h4 id="_5">（二）轮胎的三种半径<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h4>
+<p>自由半径<span class="arithmatex">\(R_0\)</span>：轮胎充足气，且不受外力时的半径</p>
+<p>静力半径<span class="arithmatex">\(R_s\)</span>：轮胎装到车上，车辆静止时，车轮中心到路面之间的垂向距离。</p>
+<p>滚动半径<span class="arithmatex">\(R\)</span>：根据车轮转动圈数n与实际车轮中心移动距离s之间的数学关系换算所得半径。</p>
+<p><img alt="1-DPhasePortrait" src="../image/DynamicVehicle1_2_1.png" /></p>
+<div class="arithmatex">\[
+R = \frac{s}{2 \pi n}
+\]</div>
+<h4 id="_6">（三）纯滚动、滑转与滑移<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h4>
+<p>纯滚动<span class="arithmatex">\(v = \omega R_0\)</span></p>
+<p>滑转<span class="arithmatex">\(v &lt; \omega R_0\)</span></p>
+<p>滑移<span class="arithmatex">\(v &gt; \omega R_0\)</span></p>
+<p>滑转情况下，滑转率<span class="arithmatex">\(s = (\omega R_0 - v)/(\omega R_0)\)</span></p>
+<p>滑移情况下，滑移率<span class="arithmatex">\(s = (v - \omega R_0)/v\)</span></p>
+<p><strong>滑转率</strong>与<strong>滑移率</strong>统称为<strong>滑动率</strong>。</p>
+<p><img alt="1-DPhasePortrait" src="../image/DynamicVehicle1_3_1.jpg" /></p>
+<ul>
+<li>驱动情况下，滑动率为1，代表了车辆打滑</li>
+<li>制动情况下，滑动率为1，代表了车辆抱死</li>
+</ul>
+<p>前轮抱死时，<span class="arithmatex">\(F_{y1}=0\)</span>，<span class="arithmatex">\(F_{y2}\)</span>与<span class="arithmatex">\(F_j\)</span>构成的力矩具有减小转向作用的能力，即使车辆失去转向能力，但汽车处于稳定状态。</p>
+<p><img alt="1-DPhasePortrait" src="../image/DynamicVehicle1_3_2.jpg" /></p>
+<p>后轮抱死时，<span class="arithmatex">\(F_{y2}=0\)</span>，<span class="arithmatex">\(F_j\)</span>与<span class="arithmatex">\(F_{y1}\)</span>构成的力矩具有增大转向作用的能力，容易出现甩尾，汽车将急剧转动，处于不稳定状态。</p>
+<p><img alt="1-DPhasePortrait" src="../image/DynamicVehicle1_3_3.jpg" /></p>
+<h4 id="_7">（四）轮胎坐标系<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h4>
+<p><img alt="1-DPhasePortrait" src="../image/DynamicVehicle1_4_1.png" /></p>
+<p>车轮平面：垂直于车轮旋转轴的轮胎对称面</p>
+<p>X轴：车轮平面与地面的交线，沿车辆前进方向为正</p>
+<p>坐标原点O：X轴与车轮旋转轴线在地面投影线的交点</p>
+<p>Z轴：过O点垂直于地面向上的线</p>
+<p>Y轴：过O点，垂直于XOZ平面的线，方向与X、Z轴服从右手螺旋定则</p>
+<p>侧偏角：轮胎前进方向与X轴的交角</p>
+<h4 id="_8">（五）轮胎的侧偏特性<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<ul>
+<li>侧偏现象</li>
+<li>侧偏特性</li>
+</ul>
+<div class="arithmatex">\[
+F_Y = k_y \alpha
+\]</div>
+<p><span class="arithmatex">\(k_y\)</span> -侧偏刚度</p>
+<p>特点：总体呈非线性，但在小范围内接近线性关系；侧偏刚度随垂向载荷增大呈现先增大后减小的变化趋势</p>
+<ul>
+<li>低速转向时，转向轮摆角可以很大，因此侧偏角对转向半径影响较小</li>
+<li>高速转向时，转向轮摆角一般都很小，小于1度，此时侧偏角对转向半径的影响就很突出。</li>
+</ul>
+<h4 id="_9">（六）回正力矩<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<ul>
+<li>车辆静止时受到的侧向力不会产生拖距</li>
+<li>车辆运动时候会产生一定的拖距，从而产生回正力矩<span class="arithmatex">\(M_z\)</span></li>
+<li>车辆受到侧向力较大的时候，轮胎拖距会变大</li>
+<li>车辆受到的非常大的侧向力时候，拖距变小到为零</li>
+</ul>
+<p><mark>此处插入一张图片</mark></p>
+<ul>
+<li>回正力矩导致车辆的前轮的转向半径半大，导致后轮的转向半径变小</li>
+</ul>
+<p>特点：</p>
+<ul>
+<li>侧偏角增大，回正力矩呈现先增大后减小的变化趋势，当侧偏角增大到一定值后，回正力矩将变为负值</li>
+<li>回正力矩与垂向载荷有关，载荷越大，侧偏刚度越大，则回正力矩越大。</li>
+</ul>
+<h3 id="12">1.2 轮胎纵滑和侧滑下的简化模型<a class="headerlink" href="#12" title="Permanent link">&para;</a></h3>
+<p>轮胎模型的定义：</p>
+<ul>
+<li>反应轮胎力学性能（所受侧向力、纵向力以及回正力矩等）与侧偏角和运动状态（滑转率和滑移率）关系的数学模型</li>
+</ul>
+<h4 id="_10">（一）简化模型的假设条件<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p>轮胎的四个组成部分</p>
+<ul>
+<li>胎面层、带束层、胎体、轮辋</li>
+</ul>
+<p>四个假设条件</p>
+<ul>
+<li>胎体只存在沿y方向的变形，变形量为<span class="arithmatex">\(y_b\)</span></li>
+<li>胎面存在x和y方向的变形,接地印迹各位置的纵向与侧向胎面变形刚度相同</li>
+<li>沿x方向，接地印迹的最前与最后端到y轴的距离相等</li>
+<li>在接地印迹内各点的运动方向一致</li>
+</ul>
+<p><img alt="alt text" src="../image/TireModel_1.jpg" /></p>
+<p>假设胎面上的一个点，从<span class="arithmatex">\(A\)</span>点开始与地面接触，经过<span class="arithmatex">\(t\)</span>时间后，运动到<span class="arithmatex">\(P\)</span>点，则<span class="arithmatex">\(P\)</span>位置的x方向为</p>
+<div class="arithmatex">\[
+x'=vt \cos \alpha
+\]</div>
+<p>假设车轮作纯滚动，则该点从<span class="arithmatex">\(A\)</span>处开始，经过<span class="arithmatex">\(t\)</span>时间后运动到<span class="arithmatex">\(H\)</span>位置，定义<span class="arithmatex">\(H\)</span>位置的<span class="arithmatex">\(x\)</span>方向坐标为<span class="arithmatex">\(x\)</span></p>
+<p>在<span class="arithmatex">\(P\)</span>点胎面沿<span class="arithmatex">\(x\)</span>方向的变形量为<span class="arithmatex">\(\Delta x=x'-x = vt\cos \alpha - x\)</span></p>
+<p>在<span class="arithmatex">\(P\)</span>点胎面沿<span class="arithmatex">\(y\)</span>方向的变形量为<span class="arithmatex">\(\Delta y=vt\sin \alpha\)</span></p>
+<p>在制动工况下</p>
+<ul>
+<li>定义变量-制动滑移率<span class="arithmatex">\(s_b\)</span>(brake)</li>
+</ul>
+<div class="arithmatex">\[
+s_b = \frac{\Delta x}{x'} = \frac{\Delta x}{x + \Delta x} \Rightarrow \Delta x = \frac{s_b}{1-s_b}x
+\]</div>
+<div class="arithmatex">\[
+\begin{array}{ll}
+    \Delta y &amp;= vt\sin \alpha\\
+    &amp;= vt \cos \alpha \cdot \tan \alpha\\
+    &amp;= x' \cdot \tan \alpha\\
+    &amp;= \Delta x / s_b \cdot \tan \alpha\\
+    &amp;= 1/s_b \cdot s_b / (1 - s_b) x \cdot \tan \alpha\\
+    &amp;= 1/(1 - s_b)x \cdot \tan \alpha
+\end{array}
+\]</div>
+<p>在驱动工况下</p>
+<ul>
+<li>在驱动工况下<span class="arithmatex">\(\Delta x = x' - x &lt; 0\)</span></li>
+<li>定义变量-驱动滑转率<span class="arithmatex">\(s_d\)</span>(drive)</li>
+</ul>
+<div class="arithmatex">\[
+s_d = -\frac{\Delta x}{x}
+\]</div>
+<div class="arithmatex">\[
+\Delta y = \tan \alpha (1-s_d)x
+\]</div>
+<p>通过推导可以得出</p>
+<div class="arithmatex">\[
+s_x = \frac{s_b}{1 - s_b} = -s_d
+\]</div>
+<div class="arithmatex">\[
+s_y = \frac{\tan \alpha}{1 - s_b} = \tan \alpha (1 - s_d)
+\]</div>
+<h3 id="13">1.3 轮胎侧偏特性的半经验模型<a class="headerlink" href="#13" title="Permanent link">&para;</a></h3>
+<ul>
+<li>特点：半经验模型是反应轮胎侧偏特性的稳态模型，其不能反应出轮胎的动态响应特性</li>
+</ul>
+<h3 id="14-swift">1.4 轮胎的swift模型<a class="headerlink" href="#14-swift" title="Permanent link">&para;</a></h3>
+<ul>
+<li>考虑了轮胎环和轮辋之间的变形阻尼</li>
+<li>考虑了胎体左右两个面之间的变形刚度和阻尼</li>
+<li>考虑接地处沿垂线方向、侧向以及纵向的变形，在接地处引入了垂向、侧向以及纵向的刚度</li>
+<li>轮胎接地处的侧偏模型采用了“魔术”模型，以模式模型计算出来的力和力矩作为轮胎动力学模型的输入</li>
+</ul>
+<h2 id="_11">第二章 悬架系统特性<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>悬架的构成</strong></li>
+</ul>
+<p>弹性原件（弹簧）：缓冲能量</p>
+<p>阻尼元件（减震器）：消耗能量</p>
+<p>导向杆系（连杆）：运动协调</p>
+<ul>
+<li><strong>悬架的类型</strong></li>
+</ul>
+<p>根据左右两个半桥是否联结在一起，区分为非独立悬架和独立悬架。</p>
+<p>独立悬架中根据横臂的数量又可分为单横臂和双横臂独立悬架。</p>
+<h3 id="21">2.1 扭杆弹簧<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<p>特点：结构简单、工作可靠、单位质量变形能大，在履带车辆和轮式车辆上有着广泛应用</p>
+<p>可以看出，当车辆在转向的情况下，车辆存在一个抵抗车辆侧倾的角度</p>
+<h4 id="_12">（一）主要参数<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
+<ul>
+<li><span class="arithmatex">\(d\)</span>-扭杆直径</li>
+<li><span class="arithmatex">\(L\)</span>-扭杆工作长度</li>
+<li><span class="arithmatex">\(a\)</span>-摇臂长度</li>
+<li><span class="arithmatex">\(\alpha_0\)</span>-摇臂的初始安装位置与水平线的夹角</li>
+<li><span class="arithmatex">\(\alpha\)</span>-车轮受力后摇臂与水平线的夹角，规定在水平线以下为正，水平线以上为负</li>
+<li><span class="arithmatex">\(s\)</span>-车轮垂向位移</li>
+<li><span class="arithmatex">\(F\)</span>-车轮垂向所受外力</li>
+</ul>
+<h4 id="_13">（二）刚度分析<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
+<div class="arithmatex">\[
+T_w = F a \cos \alpha
+\]</div>
+<div class="arithmatex">\[
+T_n = \frac{GJ\theta}{L} = \frac{GJ(\alpha_0 - \alpha)}{L}
+\]</div>
+<p>其中：</p>
+<div class="arithmatex">\[
+J = \frac{\pi d^4}{32}
+\]</div>
+<div class="arithmatex">\[
+\begin{matrix}
+    T_w = T_n\\
+    F = \frac{GJ}{La\cos\alpha}(\alpha_0 - \alpha)
+\end{matrix}
+\]</div>
+<div class="arithmatex">\[
+s = a(\sin \alpha_0 - \sin \alpha)
+\]</div>
+<div class="arithmatex">\[
+K = \frac{dF}{ds} = \frac{dF/d\alpha}{ds/d\alpha} = \frac{G\pi d^4}{32La^2}\frac{1-(\alpha_0 - \alpha)tg\alpha}{\cos^2 \alpha}
+\]</div>
+<p>可以看出当<span class="arithmatex">\(\alpha = 0\)</span>的时候，力臂最长，刚度最小</p>
+<h4 id="_14">（三）扭杆弹簧刚度的影响因素<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h4>
+<ul>
+<li>扭杆直径<span class="arithmatex">\(d\)</span>越大，刚度越大</li>
+<li>扭杆工作长度<span class="arithmatex">\(L\)</span>越大，刚度越小</li>
+<li>摇臂长度<span class="arithmatex">\(a\)</span>越长，刚度越小</li>
+<li>工作位置<span class="arithmatex">\(\alpha\)</span>的影响</li>
+</ul>
+<h3 id="22">2.2 油气弹簧<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<h4 id="221">2.2.1 油气弹簧概述<a class="headerlink" href="#221" title="Permanent link">&para;</a></h4>
+<ul>
+<li>
+<p>不同路面对悬架刚度的需求不同：好的路面需要弹簧刚度小一些，坏路面要求弹簧刚度要大一些，因此需要车辆
+在动行程大的时候，刚度大一些，动行程小的时候刚度小一些</p>
+</li>
+<li>
+<p>系统组成：由油室、气室和活塞组成</p>
+</li>
+<li>工作介质：液压油，气体</li>
+<li>工作过程：当车轮向上运动时，其将带动活塞网上运动，活塞推动液压油压缩气室中气体，气体受压后体积变小，压力增大，并与负载平衡。</li>
+<li>油气弹簧的优点：悬架动行程小时，其刚度小；动行程大时，其刚度也大；带阻尼阀的油气弹簧，具有减振器的功能，可以省去单独的减振器</li>
+<li>油气弹簧的分类：<strong>气室数量</strong>：单气室油气弹簧，双气室油气弹簧、具有反压气室的油气弹簧、可调式油气弹簧</li>
+<li>双气室油气弹簧的工作过程：当动行程较小时，低压气室工作；当动行程较大时，高、低压气室共同参与工作</li>
+<li>具有反压气室的油气弹簧工作过程：压缩行程时，一个气室受压，压力升高，而另一个气室体积膨胀，压力减小；反行程时，过程相反</li>
+<li>反压气室的特点：可以阻碍车轮的快速下落，解决单气室油气弹簧反行驶工作时活塞易脱缸的问题</li>
+<li>可调式油气弹簧的特点：能实现位姿调节，提高车辆的通过性</li>
+</ul>
+<h4 id="222">2.2.2 单气室油气弹簧<a class="headerlink" href="#222" title="Permanent link">&para;</a></h4>
+<h5 id="_15">主要参数<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h5>
+<ul>
+<li><span class="arithmatex">\(A_e\)</span>-主活塞的面积</li>
+<li><span class="arithmatex">\(V_0,p_0,h_0\)</span>-气室的初始体积、初始气压和初始气柱高度，<span class="arithmatex">\(h_0 = V_0 / A_e\)</span></li>
+<li><span class="arithmatex">\(V,p\)</span>-活塞运动<span class="arithmatex">\(s\)</span>之后，气室的体积和压力</li>
+</ul>
+<h5 id="_16">刚度推导<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h5>
+<div class="arithmatex">\[
+K = \frac{dF}{ds}
+\]</div>
+<p>根据热力学基本定律可以得到</p>
+<div class="arithmatex">\[
+p_0V_0^m = pV^m = C
+\]</div>
+<div class="arithmatex">\[
+\frac{p}{p_0} = (\frac{V_0}{V_0 - \Delta V})^m = \frac{1}{(1-\frac{sA_e}{h_0A_e})^m}
+\]</div>
+<div class="arithmatex">\[
+F = pA_e = A_ep_0(1-\frac{s}{h_0})^{-m}
+\]</div>
+<div class="arithmatex">\[
+K = \frac{dF}{ds} = \frac{p_0 A_e m}{h_0}(1-\frac{s}{h_0})^{-(m+1)}
+\]</div>
+<h2 id="_17">第三章 转向轮和前轴的横摆<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<h3 id="31">3.1 陀螺效应<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
+<h4 id="_18">（一）定义<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h4>
+<p>力学中的陀螺就是除能绕自转轴线转动外，还能绕其他轴线转动的刚体</p>
+<h4 id="_19">（二）陀螺的自转动量矩<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h4>
+<ul>
+<li>质点动量矩：质点动量对转动轴之矩，表达式为</li>
+</ul>
+<div class="arithmatex">\[
+H = r \times mv = r \times m(\Omega \times r) = m |r|^2 \Omega
+\]</div>
+<p><span class="arithmatex">\(r\)</span>-质点到转动轴的矢径
+<span class="arithmatex">\(v\)</span>-质点的速度矢量</p>
+<p><span class="arithmatex">\(\Omega\)</span>-质点绕转动轴的角速度矢量</p>
+<ul>
+<li>陀螺自转动量矩：陀螺对自转轴线的动量矩</li>
+</ul>
+<div class="arithmatex">\[
+H = \sum_{i} m_i |r_i|^2 \Omega = I\Omega
+\]</div>
+<p>方向与自转角速度方向相同</p>
+<h4 id="_20">（三）陀螺的动量矩定理<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h4>
+<ul>
+<li>陀螺对主轴公转质点O的动量矩定理：绕共轴支点O转动的陀螺，其对O点的动量矩变化率等于作用在陀螺上的锁喉外力对O点的力矩的代数和</li>
+</ul>
+<div class="arithmatex">\[
+\frac{dL}{dt} = M
+\]</div>
+<p>对于高速转动的陀螺，陀螺对公转支点O的动量矩L，可近似用陀螺对自转轴线的动量矩H来代替。</p>
+<div class="arithmatex">\[
+\frac{dL}{dt} = M \Rightarrow \frac{dH}{dt} = M
+\]</div>
+<p>若没有外力的情况下，角动量矩守恒</p>
+<h2 id="_21">第七章 关键部件动力学模型<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h2>
+<h3 id="_22">发动机激励模型<a class="headerlink" href="#_22" title="Permanent link">&para;</a></h3>
+<p>发动机激励转矩 = 平均转矩 + 波动转矩</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2016 - 2020 StarWaper&Doublehorse
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.top", "search.suggest", "search.highlight", "header.autohide", "content.code.copy"], "search": "../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.081f42fc.min.js"></script>
+      
+        <script src="../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
