@@ -32,7 +32,7 @@ $$
 
 构成复数域 C 上的线性空间，称为 A 的列空间或A 的值域
 
-#### 线性空间相关的相关概念
+#### 线性空间的相关概念
 
 * 含有零向量的向量组一定线性相关
 * 整体无关$\Rrightarrow$部分无关；部分相关$\Rrightarrow$整体相关
@@ -98,12 +98,21 @@ $$
 
 * 若$\alpha \in V_1$或$\alpha \in V_2 \Rightarrow \alpha \in V_1 + V_2$
 * 若$\alpha \in V_1 + V_2 \not \Rightarrow \alpha \in V_1$或$\alpha \in V_2$
-* 一般来说，$V_1 \cap V_2$不构成$V$的子空间，但满足
+* 一般来说，$V_1 \cup V_2$不构成$V$的子空间，但满足
 
 $$
-V_1 \cup V_2 \sim V_1 + V_2
+V_1 \cup V_2 \subseteq V_1 + V_2
 $$
 
 并且，$V_1 + V_2$是$V$中包含$V_1 \cup V_2$的最小子空间
 
 如果$V_1 \cap V_2 = \{\theta \}$,称和空间$V_1 + V_2$为**直和**，记为$V_1 \oplus V_2$
+
+* 关于子空间直和的几种等价
+
+设$U=V_1 \oplus V_2$是线性空间$V$的两个子空间$V_1$和$V_2$的直和，那么下列叙述是等价的
+
+* $U = V_1 \oplus V_2$是直和
+* $dim(V_1+V_2)=dimV_1 + dimV_2$
+* 设$\alpha_1 , \cdots , \alpha_n$是$V_1$的一组基，$\beta_1, \cdots , \beta_n$是$V_2$的一组基，则$\alpha_1, \cdots, \alpha_n, \beta_1, \cdots, \beta_n$是$U=V_1 \oplus V_2$的一组基
+* $U=V_1\oplus V_2$的任意一个向量$u\in U$,可以唯一地表示$u=v_1 + v_2$,其中$v_1\in V_1, v_2 \in V_2$
